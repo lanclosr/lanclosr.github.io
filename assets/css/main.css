@@ -169,7 +169,7 @@
 		}
 
 		a:hover {
-			color: #2A00FA;
+			color: #4575b4;
 		}
 
 	strong, b {
@@ -546,7 +546,7 @@
 					}
 
 					ul.icons li a:hover:before {
-						text-shadow: 1.25px 0px 0px #2A00FA, -1.25px 0px 0px #2A00FA, 0px 1.25px 0px #2A00FA, 0px -1.25px 0px #2A00FA;
+						text-shadow: 1.25px 0px 0px #4575b4, -1.25px 0px 0px #4575b4, 0px 1.25px 0px #4575b4, 0px -1.25px 0px #4575b4;
 					}
 
 					ul.icons li a:before {
@@ -562,7 +562,7 @@
 					}
 
 					ul.icons li a:hover {
-						border-color: #2A00FA;
+						border-color: #4575b4;
 					}
 
 			@media screen and (max-width: 480px) {
