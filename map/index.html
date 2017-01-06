@@ -37,12 +37,12 @@
     url: 'https://services1.arcgis.com/PRoAPGnMSUqvTrzq/arcgis/rest/services/CountyBoundary/FeatureServer/0/'
   }).addTo(map);
   // load geojson
-  function addDataToMap(data, map) {
+   function addDataToMap(data, map) {
     var dataLayer = L.geoJson(data);
     dataLayer.addTo(map);
 }
 
-$.getJSON("http://data.moco.opendata.arcgis.com/datasets/fd951dd8db754b4780b8aff11a0adbee_0.geojson", function(data) { addDataToMap(data, map); });
+$.getJSON("https://github.com/lanclosr/mapping/blob/master/MunicipalBoundary.geojson", function(data) { addDataToMap(data, map); }); 
   </script>
 </body>
 </html>
