@@ -243,7 +243,7 @@
 
 	hr {
 		border: 0;
-		border-bottom: solid 1px #c8cccf;
+		border-bottom: solid 1px #d73027;
 		margin: 3em 0;
 	}
 
@@ -279,7 +279,7 @@
 		-ms-appearance: none;
 		appearance: none;
 		border-radius: 4px;
-		border: solid 1px #c8cccf;
+		border: solid 1px #d73027;
 		color: inherit;
 		display: block;
 		outline: 0;
@@ -323,7 +323,7 @@
 		}
 
 		.select-wrapper:before {
-			color: #c8cccf;
+			color: #d73027;
 			display: block;
 			height: 2.75em;
 			line-height: 2.75em;
@@ -390,7 +390,7 @@
 			input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
 				border-radius: 4px;
-				border: solid 1px #c8cccf;
+				border: solid 1px #d73027;
 				content: '';
 				display: inline-block;
 				height: 1.65em;
@@ -495,7 +495,7 @@
 		}
 
 			ul.alt li {
-				border-top: solid 1px #c8cccf;
+				border-top: solid 1px #d73027;
 				padding: 0.5em 0;
 			}
 
@@ -523,7 +523,7 @@
 					width: 3.75em;
 					height: 3.75em;
 					border-radius: 100%;
-					border: solid 1px #c8cccf;
+					border: solid 1px #d73027;
 					line-height: 3.75em;
 					overflow: hidden;
 					text-align: center;
@@ -542,11 +542,11 @@
 
 					ul.icons li a:before {
 						color: #ffffff;
-						text-shadow: 1.25px 0px 0px #c8cccf, -1.25px 0px 0px #c8cccf, 0px 1.25px 0px #c8cccf, 0px -1.25px 0px #c8cccf;
+						text-shadow: 1.25px 0px 0px #d73027, -1.25px 0px 0px #d73027, 0px 1.25px 0px #d73027, 0px -1.25px 0px #d73027;
 					}
 
 					ul.icons li a:hover:before {
-						text-shadow: 1.25px 0px 0px #4575b4, -1.25px 0px 0px #4575b4, 0px 1.25px 0px #4575b4, 0px -1.25px 0px #4575b4;
+						text-shadow: 1.25px 0px 0px #d73027, -1.25px 0px 0px #d73027, 0px 1.25px 0px #d73027, 0px -1.25px 0px #d73027;
 					}
 
 					ul.icons li a:before {
@@ -562,7 +562,7 @@
 					}
 
 					ul.icons li a:hover {
-						border-color: #4575b4;
+						border-color: #d73027;
 					}
 
 			@media screen and (max-width: 480px) {
@@ -623,7 +623,7 @@
 		padding: 0 1.5em;
 		background-color: transparent;
 		border-radius: 4px;
-		border: solid 1px #c8cccf;
+		border: solid 1px #d73027;
 		color: #414f57 !important;
 		cursor: pointer;
 		text-align: center;
@@ -746,7 +746,7 @@
 				width: calc(100% + 6em);
 				height: 1px;
 				z-index: -1;
-				background: #c8cccf;
+				background: #d73027;
 			}
 
 		@media screen and (max-width: 480px) {
