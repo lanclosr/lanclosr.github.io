@@ -43,10 +43,10 @@
 //}
 
 //$.getJSON("https://github.com/lanclosr/mapping/blob/master/MunicipalBoundary.geojson", function(data) { addDataToMap(data, map); }); 
-$.getJSON("https://raw.githubusercontent.com/lanclosr/mapping/master/MunicipalBoundary.geojson", function(response) {
+$.getJSON("https://raw.githubusercontent.com/lanclosr/mapping/master/MunicipalBoundary.geojson" "fill": "#555555", function(response) {
             console.log("response", response);
             var geojsonLayer = new L.GeoJSON(response);
-            geojsonLayer.addTo(map);    
+            geojsonLayer.addTo(map);			
         });
   </script>
 </body>
