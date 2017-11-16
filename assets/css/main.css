@@ -622,6 +622,9 @@ ul.topnav li.right {float: right;}
         .column {
             float: left;
             width: 33.33%;
+            text-align: center;
+            font-style: italic;
+            font-size: smaller;
         }
 
         /* Clear floats after the columns */
@@ -641,7 +644,8 @@ ul.topnav li.right {float: right;}
         img.displayed {
             display: block;
             margin-left: auto;
-            margin-right: auto 
+            margin-right: auto;
+            
         }
 
         img.displayed:hover {
