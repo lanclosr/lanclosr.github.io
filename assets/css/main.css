@@ -127,7 +127,7 @@
 
 	body, input, select, textarea {
 		color: #414f57;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: Arial, Helvetica, sans-serif;
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 2;
@@ -185,10 +185,10 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #0E1215;
+		color: #222;
 		line-height: 1.5;
 		margin: 0 0 0.75em 0;
-        font-weight: 550;
+        font-weight: 700;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -751,11 +751,11 @@
 			}
 
         #main .blockleft {
-			color: #4A5F6B;
-		    font-family: "Source Sans Pro", Helvetica, sans-serif;
+			color: #808080;
+		    font-family: Arial, Helvetica, sans-serif;
             text-align: left;
 		    font-size: 11pt;
-		    font-weight: 500;
+		    font-weight: 300;
 		    line-height: 1.5;
 		    letter-spacing: 0.1em;
             position: left;
