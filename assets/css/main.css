@@ -125,29 +125,35 @@
 
 
 /* Menu */
-    .icon-bar {
-        width: 100%; /* Full-width */
-        background-color: #555; /* Dark-grey background */
-        overflow: auto; /* Overflow due to float */
-    }
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
 
-    .icon-bar a {
-        float: left; /* Float links side by side */
-        text-align: center; /* Center-align text */
-        width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
-        padding: 12px 0; /* Some top and bottom padding */
-        transition: all 0.3s ease; /* Add transition for hover effects */
-        color: white; /* White text color */
-        font-size: 36px; /* Increased font size */
-    }
+ul.topnav li {float: left;}
 
-    .icon-bar a:hover {
-        background-color: #000; /* Add a hover color */
-    }
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
 
-    .active {
-        background-color: #4CAF50; /* Add an active/current color */
-    }
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+ 
 
 /* Type */
 
