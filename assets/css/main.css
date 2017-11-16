@@ -644,6 +644,10 @@ ul.topnav li.right {float: right;}
             margin-right: auto 
         }
 
+        img.displayed:hover {
+            border-color: #4CAF50;
+        }
+
 /*UL elements */
 		ul.actions {
 			cursor: default;
