@@ -645,6 +645,7 @@ ul.topnav li.right {float: right;}
             display: block;
             margin-left: auto;
             margin-right: auto;
+            width: 75%;
             
         }
 
