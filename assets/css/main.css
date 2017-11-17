@@ -568,7 +568,7 @@ ul.topnav li.right {float: right;}
 					width: 3.75em;
 					height: 3.75em;
 					border-radius: 100%;
-					border: solid 1px #c8cccf;
+					border: solid 1.5px #c8cccf;
 					line-height: 3.75em;
 					overflow: hidden;
 					text-align: center;
@@ -586,12 +586,12 @@ ul.topnav li.right {float: right;}
 					}
 
 					ul.icons li a:before {
-						color: #ffffff;
-						text-shadow: 1.25px 0px 0px #c8cccf, -1.25px 0px 0px #c8cccf, 0px 1.25px 0px #c8cccf, 0px -1.25px 0px #c8cccf;
+						color: #4CAF50;
+						text-shadow: 1.25px 0px 0px #blank, -1.25px 0px 0px #c8cccf, 0px 1.25px 0px #c8cccf, 0px -1.25px 0px #c8cccf;
 					}
 
 					ul.icons li a:hover:before {
-						text-shadow: 1.25px 0px 0px #4CAF50, -1.25px 0px 0px #4CAF50, 0px 1.25px 0px #4CAF50, 0px -1.25px 0px #4CAF50;
+						text-shadow: 1.25px 0px 0px #blank, -1.25px 0px 0px #4CAF50, 0px 1.25px 0px #4CAF50, 0px -1.25px 0px #4CAF50;
 					}
 
 					ul.icons li a:before {
@@ -827,7 +827,7 @@ ul.topnav li.right {float: right;}
 				width: calc(100% + 6em);
 				height: 1px;
 				z-index: -1;
-				background: #c8cccf;
+				background: #none;
 			}
 
         #main .blockleft {
