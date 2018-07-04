@@ -2,7 +2,15 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
+        <!--set overall links-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <!--nfl-->
+		<!--meta name="viewport" content="width=device-width"-->
 		<title>NFL Wins per Year: Leaflet Map by Ryan Lanclos</title>
 		<link rel="stylesheet" href="assets/css/style.css">
 		<link rel="stylesheet" href="lib/leaflet.css">
@@ -20,13 +28,33 @@
     integrity="sha512-O5N7h9yCaXpAWI1TTOmQZPQ813e4e/j9cf5Xnz2H3YTC9fkVu/FvvgJMXkPxZR7JO/UpCv/RPFy9n8gHJBC7tQ=="
     crossorigin=""></script>
     </head>
-
+    <div>
+        <ul class="topnav">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li class = "right"><a class = "active" href="/nfl.html">NFL Map</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </div>
 	<body>
+        
         <!--this is the map area on the webpage-->
 		<div id="wrapper">
 			<div id="map"></div>
 		</div>
-       
-        
+        <!--site setup-->
+       <footer id="footer">
+           <ul class="copyright">
+               <li>&copy; Ryan Lanclos</li>
+           </ul>
+        </footer>
+        <!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
 	</body>
 </html>
