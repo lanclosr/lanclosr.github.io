@@ -12,7 +12,6 @@
         <!--nfl-->
 		<!--meta name="viewport" content="width=device-width"-->
 		<title>NFL Wins per Year: Leaflet Map by Ryan Lanclos</title>
-		<link rel="stylesheet" href="assets/css/style.css">
 		<link rel="stylesheet" href="lib/leaflet.css">
         <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.css"
     integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
@@ -36,19 +35,33 @@
             <li><a href="/contact.html">Contact</a></li>
         </ul>
     </div>
-	<body>
+	<body class="is-loading">
         
-        <!--this is the map area on the webpage-->
-		<div id="wrapper">
-			<div id="map"></div>
-		</div>
-        <!--site setup-->
-       <footer id="footer">
-           <ul class="copyright">
-               <li>&copy; Ryan Lanclos</li>
-           </ul>
-        </footer>
-        <!-- Scripts -->
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<!--this is the map area on the webpage-->
+		                  <div id="mapwrapper">
+			                 <div id="map"></div>
+		                  </div>
+						</header>
+												
+						
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; Ryan Lanclos</li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
 			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
 			<script>
 				if ('addEventListener' in window) {
@@ -56,5 +69,6 @@
 					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 				}
 			</script>
+
 	</body>
 </html>
