@@ -796,6 +796,20 @@ ul.topnav li.right {float: right;}
 			margin-bottom: 1.5em;
             text-transform: none;
 		}
+        #main .stretch {
+			color: #808080;
+		    font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+		    font-size: 11pt;
+		    font-weight: 300;
+		    line-height: 1.5;
+		    letter-spacing: 0.1em;
+            position: left;
+			display: block;
+			margin-bottom: 1.5em;
+            text-transform: none;
+            width: 90%;
+		}
         @media screen and (max-width: 480px) {
 
 			#main {
