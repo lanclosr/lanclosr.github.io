@@ -22,8 +22,8 @@ $(document).ready(function() {
         });
 	//set baseMaps group variable to add to the layer control
     var baseMaps = {
-        "Light": light,
-        "Dark": dark,
+        "Light Canvas": light,
+        "Dark Canvas": dark,
         "Streets": streets
     };
     //set the map view!
