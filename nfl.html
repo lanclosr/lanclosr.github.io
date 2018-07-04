@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<!--
+	Modified from Identity by RL.
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ryan Lanclos</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="lib/leaflet.css">
+        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+    crossorigin="">
+        <!--scripts-->
+        <script src="lib/jquery-3.3.1.js"></script>
+        <script src="lib/leaflet.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/geojson.js"></script>
+        <script src="https://unpkg.com/esri-leaflet@2.1.4/dist/esri-leaflet.js"
+    integrity="sha512-m+BZ3OSlzGdYLqUBZt3u6eA0sH+Txdmq7cqA1u8/B2aTXviGMMLOfrKyiIW7181jbzZAY0u+3jWoiL61iLcTKQ=="
+    crossorigin=""></script>
+        <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-O5N7h9yCaXpAWI1TTOmQZPQ813e4e/j9cf5Xnz2H3YTC9fkVu/FvvgJMXkPxZR7JO/UpCv/RPFy9n8gHJBC7tQ=="
+    crossorigin=""></script>
+    </head>
+    <div>
+        <ul class="topnav">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li class = "right"><a class = "active" href="/nfl.html">NFL Wins Map</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </div>
+	<body class="is-loading">
+        
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<span class = "blockleft"><h1>A Dynasty Is Born?</h1>
+                            <p>Explore the total number of wins per season from 2010-2017 for each of the NFL's 32 teams.</p>
+                            <hr>
+                            <div id="map"></div>
+                            </span>
+						</header>
+												
+						
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; Ryan Lanclos</li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
+</html>
