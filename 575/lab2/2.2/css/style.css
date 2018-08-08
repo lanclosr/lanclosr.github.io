@@ -1,0 +1,12 @@
+/* Stylesheet by RPL, 2018 */
+.svg {
+    background-color: #EAECEE;
+    outline-style: solid;
+    outline-width: thick;
+}
+
+.watersheds {
+    fill: #7FB3D5;
+    stroke: #F8F9F9;
+    stroke-width: 1px;
+}
