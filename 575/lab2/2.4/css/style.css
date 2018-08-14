@@ -45,10 +45,10 @@
     fill: #999;
 }
 
-.watersheds {
+.watershed {
     fill: #7FB3D5;
     stroke: #F8F9F9;
-    stroke-width: 0.5px;
+    stroke-width: 1px;
     stroke-linecap: round;
 }
 
