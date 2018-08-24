@@ -12,7 +12,7 @@ $(document).ready(function() {
     };
     //set the map view!
     var map = L.map('map', {
-        //scrollWheelZoom: true,
+        scrollWheelZoom: true,
         center: [29.8604, -95.3698,],
         zoom: 10,
         layers: [topographic]
