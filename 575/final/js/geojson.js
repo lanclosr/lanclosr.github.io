@@ -57,7 +57,7 @@ $(document).ready(function() {
     };
     
     //load heatmap
-    $.getJSON("/data/HarrisCountyDamage.json",function(data){
+    $.getJSON("data/HarrisCountyDamage.json",function(data){
     var locations = data.features.map(function(house) {
       // the heatmap plugin wants an array of each location
       var location = house.geometry.coordinates.reverse();
@@ -69,7 +69,7 @@ $(document).ready(function() {
     });
     
     //load the watershed data
-    $.getJSON("/data/HarrisCountyWatersheds.json",function(data){
+    $.getJSON("data/HarrisCountyWatersheds.json",function(data){
         var HCwatersheds = L.geoJson(data, {style: watershedStyle,
             onEachFeature: function(feature, featureLayer) {
             featureLayer.bindPopup("<b>" + feature.properties.Watershed + " Watershed:</b><br>" + (feature.properties.F2015_Pop).toLocaleString('en') + " people live in " + (feature.properties.Households).toLocaleString('en') + " households.<br>" + (feature.properties.Point_Count).toLocaleString('en') + " of those households sustained damage during Hurricane Harvey.");
@@ -78,7 +78,7 @@ $(document).ready(function() {
         });
     
     //load the floodplain data
-    $.getJSON("/data/HarrisCountyFloodplain.json",function(data){
+    $.getJSON("data/HarrisCountyFloodplain.json",function(data){
         L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
     });
     
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
     var div = L.DomUtil.create('div', 'info legend'),
         classes = ["Harvey Damage Density", "FEMA 0.2% Flood Zone "],
-        labels = ["../img/density.png","../img/flood.png"];
+        labels = ["/img/density.png","/img/flood.png"];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < classes.length; i++) {
