@@ -1,0 +1,236 @@
+/* Stylesheet by Ryan Lanclos, 2018 UWisc Geog575 */
+
+body {
+    background-color: #1c2433;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cccccc;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+.headline {
+    word-spacing: 0.85px;
+    font-size: 3.5rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    color: #ffffff;
+    max-width: 700px;
+    text-align: center;
+
+}
+
+.byline{
+    letter-spacing: 0.25px;
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+.link {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 1rem;
+}
+
+.intro-text {
+    max-width: 70%;
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 1rem;
+    line-height: 1.65;
+}
+	
+.main-bar {
+    max-width: 90%;
+    margin: auto;
+}
+
+.column {
+    float: left;
+    width: 48%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#map {
+    height: 500px;
+}
+
+
+hr { 
+    display: block;
+    width: 50%;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(139, 0, 0, 0), rgba(139, 0, 0, 0.75), rgba(139, 0, 0, 0));
+    border-color: crimson;
+}
+
+/*char elements*/
+.chartTitle {
+    font-size: .75rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    fill: #ffffff;
+    text-transform: uppercase;
+}
+
+.chartTitleSmall {
+    font-size: .5rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    fill: #ffffff;
+    text-transform: uppercase;
+}
+
+.bar { 
+    opacity: 0.6; 
+}
+
+.bar:hover {
+    opacity: 1;
+  }
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: white;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 0.6rem;
+    fill: white;
+}
+
+.legend-text {
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 0.6rem;
+    fill: white;
+}
+
+.toolTip {
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 0.75rem;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    /*background: none repeat scroll 0 0 rgba(0,0,0,0.8);*/
+    border: 1px solid #black;
+    padding: 5px;
+    text-align: center;
+}
+
+.label {
+    fill: black;
+    font-weight: 300;
+    opacity: 0.8;
+    font-size: 0.6rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    text-anchor: middle;
+}
+
+
+.watersheds {
+    fill: #7FB3D5;
+    stroke: #ffffff;
+    opacity: 1;
+    stroke-width: 0.5px;
+    stroke-linecap: round;
+}
+
+.legend {
+    margin-right: 100px;
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 0.7rem;
+    border: 1px solid darkgray;
+    padding: 5px;
+    letter-spacing: 0.25px;
+}
+
+.label-name {
+    margin: 0 !important;
+    font-size: .6rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    fill: white;
+    text-transform: uppercase;
+}
+
+.label-nameLG {
+    margin: 0 !important;
+    font-size: .5rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    fill: white;
+    text-transform: uppercase;
+}
+
+.key-dot {
+    display: inline-block;
+    height: 10px;
+    margin-right: .5em;
+    width: 10px;
+}
+
+.more { 
+    background: #08519c;
+}
+
+.less { 
+    background: #eff3ff;
+}
+
+.caption {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.caption img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.caption:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0.8) 100%) repeat 0 0;
+    z-index: 1;
+}
+.caption-text {
+    display: block;
+    position: absolute;
+    width: 100%;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;    
+    color: #ffffff;
+    left: 0;
+    bottom: 0;
+    padding: 1em;
+    z-index: 2;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.leaflet-heatmap-layer {
+    opacity: .6;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Houston Flood Risk by Ryan Lanclos</title>
+        <!--stylesheets-->
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="lib/leaflet.css">
+        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+    crossorigin="">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/Leaflet.NavBar.css" />
+        <!--scripts-->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://unpkg.com/topojson@3"></script>
+        <script src="lib/jquery-3.3.1.js"></script>
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+        <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js" integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g==" crossorigin=""></script>
+        <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.js" integrity="sha512-O5N7h9yCaXpAWI1TTOmQZPQ813e4e/j9cf5Xnz2H3YTC9fkVu/FvvgJMXkPxZR7JO/UpCv/RPFy9n8gHJBC7tQ==" crossorigin=""></script>
+        <script src="https://rawgit.com/Leaflet/Leaflet.heat/gh-pages/dist/leaflet-heat.js"></script>
+        <script src="https://unpkg.com/esri-leaflet-heatmap@2.0.0"></script>
+        <script src="js/Leaflet.NavBar.js"></script>
+    </head>
+	<body>
+        <center>
+            <div>
+                <h1 class="headline">Flooding in Houston: Know Your Risk</h1>
+                <h3 class="byline">By Ryan Lanclos | August 2018</h3><br>
+                <p class="intro-text">Home to Houston, the 4th largest city in the United States, Harris County, Texas is bisected by <a class="link" href="https://www.hcfcd.org/hurricane-harvey/ ">22 bayous with more than 2,500 miles  of waterway</a> – a unique geography that means flooding is a very real threat. In late August of 2017, Hurricane Harvey dropped an amazing <a class="link" href="https://www.hcfcd.org/hurricane-harvey/">47.4 inches of rain near Clear Creek at Interstate 45. in Harris County (TX).</a> Harvey brought a new normal to Harris County, and citizens need to prepare now for the next storm. The resources below will help you understand your flood risk.</p><hr/>
+            </div>
+            <figure class="caption">
+                <img src="img/after.jpg" alt="Houston Skyline" />
+                <figcaption class="caption-text">Explore Your Flood Risk<br><i class="fas fa-chevron-down"></i></figcaption>
+            </figure>
+            <br><br>
+            <div>
+                <p class="intro-text">Use the map below to explore various parts of the greater Houston area. The map shows the current 0.2-percent-annual-chance (or 500-year) FEMA flood zone and a heatmap of FEMA home damage estiamtes from Hurricane Harvey.  Areas within, or near, the flood zone are more at risk for flooding.</p>
+                <br>
+                <br>
+	       </div>
+            <!--interactive map-->
+            <div id="map-wrapper">
+                <div id="map">
+                    <script src="js/heat.js"></script>
+                    <script src="js/geojson.js"></script>
+                    <div id="button-wrapper">
+                        <img src="img/mapLegendSmall.png">
+                    </div> 
+                </div>
+            </div>
+            <p class="chartTitleSmall">Data: Harris County Flood Control District & FEMA.</p>
+            <br><hr/><br>
+            <figure class="caption">
+                <img src="img/houston2.jpg" alt="Houston Skyline" />
+                <figcaption class="caption-text">A New Normal in Harris County<br><i class="fas fa-chevron-down"></i></figcaption>
+            </figure>
+            <br><br>
+            <p class="intro-text">Forming on August 17, 2017 and finally dissipating on September 2, Hurricane Harvey caused <a class="link" href="https://en.wikipedia.org/wiki/Hurricane_Harvey">$125 billion dollars in damage to the US and was responsible for 107 deaths</a>. In Harris County, <a class="link" href="https://www.hcfcd.org/media/2678/immediate-flood-report-final-hurricane-harvey-2017.pdf">"all 4.7 million people...were impacted – directly or indirectly – by Hurricane Harvey."</a>
+            <br><br>
+            The map of watersheds in Harris County below shows the number of structures damaged from Harvey as estimated by FEMA. The darker the blue, the more damage the watershed sustained during Harvey.
+            <br><br>
+            <!--watershed d3 map-->
+            <div class="main-bar">
+            <graphic>
+                <script src="js/d3map.js"></script>
+                <div>
+                    <p class="chartTitle">Amount of Damage to Structures in each Watershed</p>
+                    <p class="chartTitleSmall">Data: Harris County Flood Control District & FEMA.</p>
+                    <div><p class="label-name"><span class="key-dot more"></span>More Damage</p> </div>
+                    <div><p class="label-name"><span class="key-dot less"></span>Less Damage</p> </div>
+	           </div>
+            </graphic>
+            </div>
+            <hr/>
+            <br><br>
+            <figure class="caption">
+                <img src="img/flood.jpg" alt="Flooding" />
+                <figcaption class="caption-text">There Are No Guarantees<br><i class="fas fa-chevron-down"></i></figcaption>
+            </figure>
+            <br><br>
+            <p class="intro-text">Approximately 1.4 million residents and 482,000 households are located within the current 0.2-percent-annual-chance (or 500-year) FEMA flood zone. Most of us would expect damage from Harvey to be confied to these flood zones in each watershed. 
+            <br><br>
+            But, the new normal created by Harvey also impacted people who live outside 0.2-percent-annual-chance (or 500-year) FEMA flood zone. It impacted people who thought they were safe from flooding.The chart below shows the numbe of damaged structures inside (blue) the flood zone, and the number of structures outside (red) the flood zone for each watershed in Harris County.</p>
+            <br><br>
+            <!--d3 interactive bar chart-->
+            <div class="main-bar" id="chart">
+                <script src="js/d3chart.js"></script>
+            </div>
+            <hr/>
+            <br><br>
+            <figure class="caption">
+                <img src="img/family.jpg" alt="Family at Home" />
+                <figcaption class="caption-text">How Do We Prepare?<br><i class="fas fa-chevron-down"></i></figcaption>
+            </figure> 
+            <br><br>
+            <p class="intro-text">If you live in the greater Houston area, you are at risk of suffering damage from flooding - even if you live outside of the 0.2-percent-annual-chance (or 500-year) FEMA flood zone.
+            <br><br>
+            One of the easiest, and most cost effective, ways to prepare for the new normal is by purchasing flood insurance from the National Flood Insurance Program. 
+            <br><br>    
+            Visit <a class="link" href="https://www.floodsmart.gov">floodsmart.gov</a> for more details about flood insurance.
+            <br><br>
+            <hr/>
+            <br><br><br>
+        </center>
+        <div><center><p><small>&copy 2018 - Ryan Lanclos | University of Wisconsin-Madison</small></p></center></div>
+	</body>
+</html>
