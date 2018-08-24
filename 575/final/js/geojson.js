@@ -89,7 +89,7 @@ $(document).ready(function() {
 
     var div = L.DomUtil.create('div', 'info legend'),
         classes = ["Harvey Damage Density", "FEMA 0.2% Flood Zone "],
-        labels = ["/img/density.png","/img/flood.png"];
+        labels = ["img/density.png","img/flood.png"];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < classes.length; i++) {
