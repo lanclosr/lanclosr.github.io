@@ -59,23 +59,28 @@ $(document).ready(function() {
     
         
     //load the watershed data
-    $.getJSON("data/HarrisCountyWatersheds.json",function(data){
-        var HCwatersheds = L.geoJson(data, {style: watershedStyle,
-            onEachFeature: function(feature, featureLayer) {
-            featureLayer.bindPopup("<b>" + feature.properties.Watershed + " Watershed:</b><br>" + (feature.properties.F2015_Pop).toLocaleString('en') + " people live in " + (feature.properties.Households).toLocaleString('en') + " households.<br>" + (feature.properties.Point_Count).toLocaleString('en') + " of those households sustained damage during Hurricane Harvey.");
+    //$.getJSON("data/HarrisCountyWatersheds.json",function(data){
+        //var HCwatersheds = L.geoJson(data, {style: watershedStyle,
+           // onEachFeature: function(feature, featureLayer) {
+           // featureLayer.bindPopup("<b>" + feature.properties.Watershed + " Watershed:</b><br>" + (feature.properties.F2015_Pop).toLocaleString('en') + " people live in " + (feature.properties.Households).toLocaleString('en') + " households.<br>" + (feature.properties.Point_Count).toLocaleString('en') + " of those households sustained damage during Hurricane Harvey.");
             }
-        }).addTo(map);
-        });
+        //}).addTo(map);
+        //});
     
     //load FEMA national layer
     var femaZones = L.esri.featureLayer({
         url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28'
     }).addTo(map);
     
-    //load the floodplain data
-    $.getJSON("data/femafloodzone.json",function(data){
-        L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
+    //set popup on the FEMA layer
+    femaZones.bindPopup(function (layer) {
+        return L.Util.template('<p>"Flood zone designation: " {ZONE_SUBTY}</p>', layer.feature.properties);
     });
+    
+    //load the floodplain data
+    //$.getJSON("data/femafloodzone.json",function(data){
+        //L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
+    //});
     
     //add a legend to the bottom right
     var legend = L.control({position: 'bottomright'});
