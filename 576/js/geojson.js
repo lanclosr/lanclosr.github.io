@@ -112,6 +112,6 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-            .bindPopup('THIS AREA IS DESIGNATED AS' + femaZONES.ZONE_SUBTY + 'FOR FLOODING.').openPopup();
+            .bindPopup('THIS AREA IS DESIGNATED AS' + femaZones.ZONE_SUBTY + 'FOR FLOODING.').openPopup();
     }
 });
