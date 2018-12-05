@@ -99,7 +99,7 @@ $(document).ready(function() {
         // make sure at least one feature was identified.
             if (featureCollection.features.length > 0) {
                 identifiedFeature = L.geoJSON(featureCollection.features[0]).addTo(map);
-                var zoneDescription = featureCollection.features[0].properties['ZONE_SUBTY'];
+                var zoneDescription = featureCollection.features[0].properties['Test' + 'ZONE_SUBTY'];
                 pane.innerHTML = zoneDescription;
             }
             else {
