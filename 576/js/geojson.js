@@ -41,7 +41,8 @@ $(document).ready(function() {
                 url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
             })
         ]
-    }).addTo(map);
+    }).addTo(map)
+        .bindPopup("You are within " + femaZones.ZONE_SUBTY).openPopup();
     
     //set the style for floodplain
     var floodplainStyle = {
@@ -111,6 +112,6 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-            .bindPopup("You are within " + femaZones.ZONE_SUBTY).openPopup();;
+            .bindPopup("You are within " + femaZones.ZONE_SUBTY).openPopup();
     }
 });
