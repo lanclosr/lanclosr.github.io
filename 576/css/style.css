@@ -29,3 +29,16 @@ body {
     stroke-width: 0.5px;
     stroke-linecap: round;
 }
+
+#selectedFeatures {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 1em;
+  }
+  .leaflet-bar.map-text a {
+    color: #79BD8F;
+    display: inline;
+  }
