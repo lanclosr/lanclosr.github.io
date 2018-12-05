@@ -96,7 +96,7 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-        .bindPopup(femaZones.{ZONE_SUBTY}).openPopup()
-            //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
+        .bindPopup(femaZones.ZONE_SUBTY).openPopup()
     }
+            //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
 });
