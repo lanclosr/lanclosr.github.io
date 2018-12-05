@@ -42,7 +42,7 @@ $(document).ready(function() {
             })
         ]
     }).addTo(map)
-        .bindPopup("You are within " + femaZones.ZONE_SUBTY).openPopup();
+        .bindPopup("You are within " + findMe).openPopup();
     
     //set the style for floodplain
     var floodplainStyle = {
@@ -75,7 +75,7 @@ $(document).ready(function() {
     }).addTo(map);
     
     //set popup on the FEMA layer
-    femaZones.bindPopup(function (layer) {
+    var findMe = femaZones.bindPopup(function (layer) {
         return L.Util.template('<p>"Flood zone designation: " {ZONE_SUBTY}</p>', layer.feature.properties);
     });
     
@@ -113,6 +113,6 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-            .bindPopup("You are within " + femaZones.ZONE_SUBTY).openPopup();
+            .bindPopup("You are within " + findMe).openPopup();
     }
 });
