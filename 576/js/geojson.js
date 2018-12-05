@@ -110,6 +110,7 @@ $(document).ready(function() {
     map.on('locationfound', onLocationFound);
     function onLocationFound(e) {
         console.log(e); 
-        L.marker(e.latlng).addTo(map);
+        L.marker(e.latlng).addTo(map)
+            .bindPopup("You are within " + femaZones.ZONE_SUBTY).openPopup();;
     }
 });
