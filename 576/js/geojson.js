@@ -99,7 +99,7 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-        setPopup()
+        setPopup().openPopup()
             //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
     }
 });
