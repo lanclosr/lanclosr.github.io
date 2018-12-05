@@ -68,7 +68,7 @@ $(document).ready(function() {
         });
     
     //load the floodplain data
-    $.getJSON("data/HarrisCountyFloodplain.json",function(data){
+    $.getJSON("data/femafloodzone.json",function(data){
         L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
     });
     
