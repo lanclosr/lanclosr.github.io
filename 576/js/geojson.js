@@ -41,8 +41,7 @@ $(document).ready(function() {
                 url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
             })
         ]
-    }).addTo(map)
-        .bindPopup("You are within " + findMe).openPopup();
+    }).addTo(map);
     
     //set the style for floodplain
     var floodplainStyle = {
