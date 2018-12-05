@@ -4,7 +4,7 @@ body {
     background-color: #1c2433;
     font-family: Arial, Helvetica, sans-serif;
     color: #cccccc;
-    padding-top: 10%;
+    padding-top: 45px;
 }
 
 .navbar{
@@ -17,7 +17,7 @@ body {
 }
 
 #map {
-    height:90%;
+    height:95%;
     position: absolute;
     right:0;
 }
