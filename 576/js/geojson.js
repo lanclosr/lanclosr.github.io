@@ -59,7 +59,7 @@ $(document).ready(function() {
     
         
     //load the watershed data
-    $.getJSON("/data/HarrisCountyWatersheds.json",function(data){
+    $.getJSON("../data/HarrisCountyWatersheds.json",function(data){
         var HCwatersheds = L.geoJson(data, {style: watershedStyle,
             onEachFeature: function(feature, featureLayer) {
             featureLayer.bindPopup("<b>" + feature.properties.Watershed + " Watershed:</b><br>" + (feature.properties.F2015_Pop).toLocaleString('en') + " people live in " + (feature.properties.Households).toLocaleString('en') + " households.<br>" + (feature.properties.Point_Count).toLocaleString('en') + " of those households sustained damage during Hurricane Harvey.");
@@ -68,7 +68,7 @@ $(document).ready(function() {
         });
     
     //load the floodplain data
-    $.getJSON("/data/HarrisCountyFloodplain.json",function(data){
+    $.getJSON("../data/HarrisCountyFloodplain.json",function(data){
         L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
     });
     
