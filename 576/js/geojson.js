@@ -105,7 +105,7 @@ $(document).ready(function() {
     //set geolocation for the user
     $('.pure-button').on('click', function(){
         mymap.locate({setView: true, maxZoom: 15});
-    });
+    }.addto(map));
 
     mymap.on('locationfound', onLocationFound);
     function onLocationFound(e) {
