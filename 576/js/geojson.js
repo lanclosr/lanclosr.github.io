@@ -68,10 +68,10 @@ $(document).ready(function() {
         //});
     
     //load FEMA national layer
-    urlFEMA = 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28';
+    var urlFEMA = 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28';
     
-    options ={
-        minZoom:16
+    var options ={
+        minZoom:16,
     };
     
     var femaZones = L.esri.featureLayer(urlFEMA, options).addTo(map);
