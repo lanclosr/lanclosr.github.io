@@ -104,12 +104,12 @@ $(document).ready(function() {
     
     //set geolocation for the user
     $('.pure-button').on('click', function(){
-        mymap.locate({setView: true, maxZoom: 15});
+        map.locate({setView: true, maxZoom: 15});
     }.addto(map));
 
-    mymap.on('locationfound', onLocationFound);
+    map.on('locationfound', onLocationFound);
     function onLocationFound(e) {
         console.log(e); 
-        L.marker(e.latlng).addTo(mymap);
+        L.marker(e.latlng).addTo(map);
     }
 });
