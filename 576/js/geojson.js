@@ -101,5 +101,5 @@ $(document).ready(function() {
     };
 
     legend.addTo(map);
-    
+    map.locate({setView: true, maxZoom: 16});
 });
