@@ -62,6 +62,11 @@ $(document).ready(function() {
         return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
        });
     
+    //load the floodplain data
+    //$.getJSON("data/femafloodzone.json",function(data){
+        //L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
+    //});
+    
     //add a legend to the bottom right
     var legend = L.control({position: 'bottomright'});
 
@@ -71,7 +76,13 @@ $(document).ready(function() {
         classes = ["FEMA 0.2% Flood Zone "],
         labels = ["img/flood.png"];
 
-        return div;
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < classes.length; i++) {
+        div.innerHTML +=
+            ("<img src="+ labels[i] +" height='20' width='20'>  ") + classes[i] +'<br>';
+    }
+
+    return div;
     };
 
     legend.addTo(map);
@@ -85,26 +96,8 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e);
         L.marker(e.latlng).addTo(map)
+        .bindPopup(e.latlng).openPopup();
     }
-    //try something new here...
-    var identifiedFeature;
-    var pane = document.getElementById('selectedFeatures');
-
-    map.on('click', function (e) {
-        pane.innerHTML = 'Loading';
-        if (identifiedFeature){
-            map.removeLayer(identifiedFeature);
-        }
-        femaZones.identify().on(map).at(e.latlng).run(function(error, featureCollection){
-        // make sure at least one feature was identified.
-            if (featureCollection.features.length > 0) {
-                identifiedFeature = L.geoJSON(featureCollection.features[0]).addTo(map);
-                var zoneDescription = featureCollection.features[0].properties['ZONE_SUBTY'];
-                pane.innerHTML = zoneDescription;
-            }
-            else {
-                pane.innerHTML = 'No features identified.';
-            }
-        })
-    })
+    
+    //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
 });
