@@ -1,0 +1,31 @@
+/* Stylesheet by Ryan Lanclos, 2018 UWisc Geog575 */
+
+body {
+    background-color: #1c2433;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cccccc;
+    padding-top: 50px;
+}
+
+.navbar{
+    background-color: #1c2433;
+    text: #ffffff;
+}
+
+.container-fluid, .row{
+    background-color: #f5f5f5;
+}
+
+#map {
+    height:95%;
+    position: absolute;
+    right:0;
+}
+
+.watersheds {
+    fill: #7FB3D5;
+    stroke: #ffffff;
+    opacity: 1;
+    stroke-width: 0.5px;
+    stroke-linecap: round;
+}
