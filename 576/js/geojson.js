@@ -25,7 +25,7 @@ $(document).ready(function() {
     map.getPane('canvas').style.pointerEvents = 'none';
     
     //add layer control to the map 
-    L.control.layers(baseMaps).addTo(nav);
+    L.control.layers(baseMaps).addTo(map);
     
     //add Navbar to the map
     L.control.navbar().addTo(map);
