@@ -69,7 +69,7 @@ $(document).ready(function() {
     
     //load FEMA national layer
     var femaZones = L.esri.featureLayer({
-        minzoom: 13,
+        minzoom: 16,
         url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28'
     }).addTo(map);
     
