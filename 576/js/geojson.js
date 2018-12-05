@@ -69,9 +69,12 @@ $(document).ready(function() {
     
     //load FEMA national layer
     urlFEMA = 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28';
-    zoomer = minZoom: 16;
     
-    var femaZones = L.esri.featureLayer(urlFEMA, zoomer).addTo(map);
+    options ={
+        minZoom:16;
+    };
+    
+    var femaZones = L.esri.featureLayer(urlFEMA, options).addTo(map);
     
     //set popup on the FEMA layer
     var findMe = femaZones.bindPopup(function (layer) {
