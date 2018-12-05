@@ -50,32 +50,16 @@ $(document).ready(function() {
         "opacity": 0.4
     };
     
-    //set the style for watersheds
-    var watershedStyle = {
-        "color": "white",
-        "weight": 0,
-        "opacity": 0
-    };
-    
-        
-    //load the watershed data
-    //$.getJSON("data/HarrisCountyWatersheds.json",function(data){
-        //var HCwatersheds = L.geoJson(data, {style: watershedStyle,
-           // onEachFeature: function(feature, featureLayer) {
-           // featureLayer.bindPopup("<b>" + feature.properties.Watershed + " Watershed:</b><br>" + (feature.properties.F2015_Pop).toLocaleString('en') + " people live in " + (feature.properties.Households).toLocaleString('en') + " households.<br>" + (feature.properties.Point_Count).toLocaleString('en') + " of those households sustained damage during Hurricane Harvey.");
-           // }
-        //}).addTo(map);
-        //});
-    
     //load FEMA national layer
     var femaZones = L.esri.featureLayer({
         url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28',
         minZoom:15,
+        style: floodplainStyle,
     }).addTo(map);
     
     //set popup on the FEMA layer
-    femaZones.bindPopup(function (layer) {
-        return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY} FOR FLOODING.</p>', layer.feature.properties);
+    var letsGo = femaZones.bindPopup(function (layer) {
+        return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
     });
     
     //load the floodplain data
@@ -112,6 +96,6 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-            .bindPopup('THIS AREA IS DESIGNATED AS' + femaZones.ZONE_SUBTY + 'FOR FLOODING.').openPopup();
+            .bindPopup('THIS AREA IS DESIGNATED AS NEEDS ATTRIBTE HERE').openPopup();
     }
 });
