@@ -67,6 +67,11 @@ $(document).ready(function() {
         }).addTo(map);
         });
     
+    //load FEMA national layer
+    var femaZones = L.esri.featureLayer({
+        url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28'
+    }).addTo(map);
+    
     //load the floodplain data
     $.getJSON("data/femafloodzone.json",function(data){
         L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
