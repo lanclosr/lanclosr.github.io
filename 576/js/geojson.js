@@ -101,5 +101,15 @@ $(document).ready(function() {
     };
 
     legend.addTo(map);
-    map.locate({setView: true, maxZoom: 16});
+    
+    //set geolocation for the user
+    $('.pure-button').on('click', function(){
+        mymap.locate({setView: true, maxZoom: 15});
+    });
+
+    mymap.on('locationfound', onLocationFound);
+    function onLocationFound(e) {
+        console.log(e); 
+        L.marker(e.latlng).addTo(mymap);
+    }
 });
