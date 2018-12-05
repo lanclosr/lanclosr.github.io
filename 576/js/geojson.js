@@ -85,7 +85,7 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e);
         L.marker(e.latlng).addTo(map)
-    }
+    //}
     //try something new here...
     var identifiedFeature;
     var pane = document.getElementById('selectedFeatures');
@@ -107,4 +107,5 @@ $(document).ready(function() {
             }
         })
     })
+    }
 });
