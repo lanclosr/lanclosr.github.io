@@ -94,11 +94,10 @@ $(document).ready(function() {
 
     map.on('locationfound', onLocationFound);
     function onLocationFound(e) {
-        console.log(e); 
+        console.log(e);
         L.marker(e.latlng).addTo(map)
-        return marker
+        .bindPopup('Test').openPopup();
     }
-    marker.bindPopup('Test').openPopup();
     
     //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
 });
