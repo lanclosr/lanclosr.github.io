@@ -74,8 +74,8 @@ $(document).ready(function() {
     }).addTo(map);
     
     //set popup on the FEMA layer
-    var findMe = femaZones.bindPopup(function (layer) {
-        return L.Util.template('<p>"Flood zone designation: " {ZONE_SUBTY}</p>', layer.feature.properties);
+    femaZones.bindPopup(function (layer) {
+        return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY} FOR FLOODING.</p>', layer.feature.properties);
     });
     
     //load the floodplain data
@@ -112,6 +112,6 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-            .bindPopup("You are within " + findMe).openPopup();
+            .bindPopup('THIS AREA IS DESIGNATED AS' + femaZONES.ZONE_SUBTY + 'FOR FLOODING.').openPopup();
     }
 });
