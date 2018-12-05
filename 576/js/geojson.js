@@ -96,6 +96,6 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e); 
         L.marker(e.latlng).addTo(map)
-            .bindPopup('THIS AREA IS DESIGNATED AS' + {ZONE_SUBTY}).openPopup();
+            .bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
     }
 });
