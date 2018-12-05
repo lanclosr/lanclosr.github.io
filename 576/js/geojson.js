@@ -70,6 +70,7 @@ $(document).ready(function() {
     
     //load FEMA national layer
     var femaZones = L.esri.featureLayer({
+        minzoom: 13,
         url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28'
     }).addTo(map);
     
@@ -89,8 +90,8 @@ $(document).ready(function() {
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        classes = ["Harvey Damage Density", "FEMA 0.2% Flood Zone "],
-        labels = ["img/density.png","img/flood.png"];
+        classes = ["FEMA 0.2% Flood Zone "],
+        labels = ["img/flood.png"];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < classes.length; i++) {
