@@ -45,8 +45,8 @@ $(document).ready(function() {
     
     //set the style for floodplain
     var floodplainStyle = {
-        "color": "black",
-        "weight": 0.75,
+        "color": "DarkSlateBlue",
+        "weight": 0.5,
         "opacity": 0.4
     };
     
