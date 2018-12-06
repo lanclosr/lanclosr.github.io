@@ -94,7 +94,7 @@ $(document).ready(function() {
                     $( this ).dialog( "close" ).on('click', function(){
                         map.locate({setView: true, maxZoom: 15});
                     }),
-                Cancel: function() {
+                "Cancel": function() {
                     $( this ).dialog( "close" );
                 }
                 }
