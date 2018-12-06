@@ -93,7 +93,7 @@ $(document).ready(function() {
         "Find My Location": function() {
           $( this ).dialog( "close" ).on('click', function(){
               map.locate({setView: true, maxZoom: 15});
-        },
+        }),
         Cancel: function() {
           $( this ).dialog( "close" );
         }
