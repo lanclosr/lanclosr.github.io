@@ -55,7 +55,7 @@ $(document).ready(function() {
     
     //set popup on the FEMA layer when people click manually
     femaZones.bindPopup(function (layer) {
-        return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
+        return L.Util.template(result.address.Match_addr + '<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
        });
     
     //add a legend to the bottom right
