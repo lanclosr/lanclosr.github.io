@@ -100,6 +100,7 @@ $(document).ready(function() {
                 }
                 }
             });
+    });
     
     //set geolocation for the user
     //$('.pure-button').on('click', function(){
