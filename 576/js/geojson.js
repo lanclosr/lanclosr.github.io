@@ -31,13 +31,17 @@ $(document).ready(function() {
     L.control.navbar().addTo(map);
     
     //add Esri geocoder
-    var geocodeService = L.esri.Geocoding.geocodeService();
+    var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
 
-    map.on('click', function(e) {
-        geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
-            L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
-        });
-    });
+    var searchControl = L.esri.Geocoding.geosearch({
+        providers: [
+            arcgisOnline,
+            L.esri.Geocoding.mapServiceProvider({
+                label: 'States and Counties',
+                url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
+            })
+        ]
+    }).addTo(map);
     
     //set the style for floodplain
     var floodplainStyle = {
@@ -55,7 +59,7 @@ $(document).ready(function() {
     
     //set popup on the FEMA layer when people click manually
     femaZones.bindPopup(function (layer) {
-        return L.Util.template(result.address.Match_addr + '<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
+        return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
        });
     
     //add a legend to the bottom right
