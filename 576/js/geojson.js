@@ -94,12 +94,12 @@ $(document).ready(function() {
                     $( this ).dialog( "close" ).on('click', function(){
                         map.locate({setView: true, maxZoom: 15});
                     }),
+                }
                 "Cancel": function() {
                     $( this ).dialog( "close" );
                 }
                 }
-            };
-        });
+            });
     
     //set geolocation for the user
     //$('.pure-button').on('click', function(){
