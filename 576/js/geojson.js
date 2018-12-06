@@ -83,7 +83,7 @@ $(document).ready(function() {
     legend.addTo(map);
     
     //set geolocation for the user
-    $('.pure-button').on('click', function(){
+    $('.pure-button').trigger('click', function(){
         map.locate({setView: true, maxZoom: 15});
     });
 
