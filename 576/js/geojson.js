@@ -91,7 +91,7 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e);
         L.marker(e.latlng).addTo(map)
-        femaZones.on('click', function(e));
+        femaZones.on('click').openPopup();
     }
     
     //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
