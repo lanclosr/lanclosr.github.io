@@ -62,11 +62,6 @@ $(document).ready(function() {
         return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
        });
     
-    //load the floodplain data
-    //$.getJSON("data/femafloodzone.json",function(data){
-        //L.geoJson(data, {style: floodplainStyle, pane: 'canvas'}).addTo(map);
-    //});
-    
     //add a legend to the bottom right
     var legend = L.control({position: 'bottomright'});
 
@@ -96,7 +91,7 @@ $(document).ready(function() {
     function onLocationFound(e) {
         console.log(e);
         L.marker(e.latlng).addTo(map)
-        femaZones.fire('click');
+        femaZones.on('click', function(e));
     }
     
     //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
