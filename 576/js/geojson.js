@@ -15,6 +15,7 @@ $(document).ready(function() {
        //add the hazard layer
        var hazards = L.esri.tiledMapLayer({
            url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/',
+           opacity: 0.4,
            maxzoom: 11,
        }).addTo(map);
        
