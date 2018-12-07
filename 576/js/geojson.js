@@ -91,7 +91,7 @@ $(document).ready(function() {
             modal: true,
             buttons: {
                 "Find My Location": function() {
-                    $( this ).on('click', function(){
+                    $( this ).dialog('close', function(){
                         map.locate({setView: true, maxZoom: 15})
                         isConfirmed=true;
                     });
