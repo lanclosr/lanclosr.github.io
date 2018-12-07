@@ -1,6 +1,11 @@
 //hattip to leaflet tutorials!!
 //leaflet map for main index.html page
 $(document).ready(function() {
+   //find location
+    navigator.geolocation.getCurrentPosition(function(location) {
+        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+    
+    
     //set variables for the map
     var light = L.esri.basemapLayer('Gray'),
         streets   = L.esri.basemapLayer('Streets'),
@@ -14,11 +19,13 @@ $(document).ready(function() {
     //set the map view!
     var map = L.map('map', {
         scrollWheelZoom: false,
-        center: [29.8604, -95.3698,],
+        setView: latlng,
         zoom: 10,
         layers: [topographic]
     });
     
+    var marker = L.marker(latlng).addTo(map);
+        
     //create pane to draw lables
     map.createPane('canvas');
     map.getPane('canvas').style.zIndex = 200;
@@ -84,13 +91,13 @@ $(document).ready(function() {
     
     
     //set geolocation for the user
-    $('.pure-button').on('click', function(){
-        map.locate({setView: true, maxZoom: 15});
-    });
+    //$('.pure-button').on('click', function(){
+        //map.locate({setView: true, maxZoom: 15});
+    //});
 
-    map.on('locationfound', onLocationFound);
-    function onLocationFound(e) {
-        console.log(e);
-        L.marker(e.latlng).addTo(map)
-    }
+    //map.on('locationfound', onLocationFound);
+    //function onLocationFound(e) {
+        //console.log(e);
+        //L.marker(e.latlng).addTo(map)
+    //}
 });
