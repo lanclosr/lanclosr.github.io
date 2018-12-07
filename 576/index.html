@@ -1,15 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>Ryan Lanclos Esri JS4.9 Geog576</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Popup dock positions - 4.9</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .docking-control {
+      font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      position: absolute;
+      z-index: 10;
+      top: 50%;
+      left: 50%;
+      width: 250px;
+      height: 80px;
+      padding: 10px;
+      box-sizing: border-box;
+      margin: -40px 0 0 -125px;
+      background-color: #fff;
+      color: #323232;
+      text-align: center;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .docking-control label {
+      display: inline-block;
+      font-weight: bold;
+      margin: 0 0 10px 0;
+      padding: 0;
+      font-size: 16px;
+    }
+  </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Esri js4.9 -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/dijit/themes/claro/claro.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
-    <script src="js/mapper.js"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/WebMap"
+    ], function(
+      Map, MapView, WebMap
+    ) {
+
+      var webmap = new WebMap({
+        portalItem: { // autocasts as new PortalItem()
+          id: "b194a6d4272343adab640715f5e3f259"
+        }
+      });
+
+      var view = new MapView({
+        map: webmap,
+        popup: {
+          dockEnabled: true,
+          dockOptions: {
+            // Disables the dock button from the popup
+            buttonEnabled: false,
+            // Ignore the default sizes that trigger responsive docking
+            breakpoint: false,
+          }
+        },
+        container: "viewDiv"
+      });
+
+      popup = view.popup;
+
+      view.when(function() {
+
+        var centerPoint = view.center.clone();
+
+        popup.open({
+          title: "Popup dock positions",
+          location: centerPoint,
+          content: "Use the control in the center of the map to change the location where the popup will dock."
+        });
+
+        // Watch currentDockPosition of the popup and open the
+        // popup at the specified position.
+        popup.watch("currentDockPosition", function(value) {
+          popup.visible = true;
+        });
+
+        var selectNode = document.getElementById("dockPositionControl");
+
+        // Let user change the position dockOptions.position property of the
+        // popup at runtime from the drop-down list.
+        selectNode.addEventListener("change", function(event) {
+          popup.set("dockOptions", {
+            breakpoint: false,
+            buttonEnabled: false,
+            position: event.target.value
+          });
+        });
+
+      });
+    });
+  </script>
 </head>
+
 <body>
-  <div id="viewDiv"></div>
+    <nav class="navbar navbar-light navbar-fixed-top header">
+        <a class="navbar-brand">Know Your Risk: Hazard Lookup</a>
+    </nav>
+    <div id="viewDiv">
+    </div>
 </body>
+
 </html>
