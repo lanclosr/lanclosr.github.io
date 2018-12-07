@@ -21,11 +21,3 @@ body {
     position: absolute;
     right:0;
 }
-
-.watersheds {
-    fill: #7FB3D5;
-    stroke: #ffffff;
-    opacity: 1;
-    stroke-width: 0.5px;
-    stroke-linecap: round;
-}
