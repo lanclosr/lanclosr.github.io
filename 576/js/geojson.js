@@ -13,8 +13,8 @@ $(document).ready(function() {
        var basemap = L.esri.basemapLayer('Streets').addTo(map);
        
        //add the hazard layer
-       var hazards = L.esri.featureLayer({
-           url: 'https://services.arcgis.com/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolized/FeatureServer/0',
+       var hazards = L.esri.tiledMapLayer({
+           url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer',
            maxzoom: 13,
        }).addTo(map);
        
