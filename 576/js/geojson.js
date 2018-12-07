@@ -91,17 +91,15 @@ $(document).ready(function() {
             modal: true,
             buttons: {
                 "Find My Location": function() {
-                    $( this ).dialog( "close" );
-                        //.on('click', function(){
-                        //map.locate({setView: true, maxZoom: 15});
-                    //})
+                    $( this ).dialog( "close" ).on('click', function(){
+                        map.locate({setView: true, maxZoom: 15});
+                    });
                 },
                 Cancel: function() {
                     $( this ).dialog( "close" );
                 }
                 }
             });
-        e.preventDefault();
         return false;
     });
     
