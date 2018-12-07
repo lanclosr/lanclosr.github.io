@@ -24,8 +24,7 @@ $(document).ready(function() {
        });
        
        //drop a marker at the user location from lat and long
-       var marker = L.marker(latlng)
-       }).addTo(map);
+       var marker = L.marker(latlng).addTo(map);
     
        //add Esri geocoder
         var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
