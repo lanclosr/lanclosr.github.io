@@ -20,7 +20,7 @@ $(document).ready(function() {
        
        //bind a popup to the features
        var showMe = hazards.bindPopup(function (layer) {
-           return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
+           return L.Util.template('<p>This location is at risk for the following hazards:</br>Flood:{Flood}</br>Hurricane:{Hurricane}</p>', layer.feature.properties);
        });
        
        //drop a marker at the user location from lat and long
