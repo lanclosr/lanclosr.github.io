@@ -12,7 +12,7 @@ $(document).ready(function() {
        var femaZones = L.esri.featureLayer({
            url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28',
            maxzoom: 14,
-           style: floodplainStyle,
+           style: watersheds,
        }).addTo(map); 
        //drop a marker at the user location from lat and long
        var marker = L.marker(latlng).addTo(map);
