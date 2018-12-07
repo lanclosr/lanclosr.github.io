@@ -57,9 +57,10 @@
     require([
       "esri/Map",
       "esri/views/MapView",
-      "esri/WebMap"
+      "esri/WebMap",
+      "esri/widgets/Locate"
     ], function(
-      Map, MapView, WebMap
+      Map, MapView, WebMap, Locate
     ) {
 
       var webmap = new WebMap({
@@ -89,9 +90,9 @@
         var centerPoint = view.center.clone();
 
         popup.open({
-          title: "Popup dock positions",
+          title: "Explore Your Risk",
           location: centerPoint,
-          content: "Use the control in the center of the map to change the location where the popup will dock."
+          content: "Click anywhere on the map to see what hazards a location is exposed to based on available data."
         });
 
         // Watch currentDockPosition of the popup and open the
@@ -101,18 +102,17 @@
         });
 
         var selectNode = document.getElementById("dockPositionControl");
-
-        // Let user change the position dockOptions.position property of the
-        // popup at runtime from the drop-down list.
-        selectNode.addEventListener("change", function(event) {
-          popup.set("dockOptions", {
-            breakpoint: false,
-            buttonEnabled: false,
-            position: event.target.value
-          });
+          
+        //add locate function and set a marker
+        var locateBtn = new Locate({
+            view: view
         });
 
-      });
+        // Add the locate widget to the top left corner of the view
+          view.ui.add(locateBtn, {
+            position: "top-left"
+            });
+        });
     });
   </script>
 </head>
