@@ -101,7 +101,8 @@ $(document).ready(function() {
                 }
                 }
             });
-        return false
+        e.preventDefault();
+        return false;
     });
     
     //set geolocation for the user
