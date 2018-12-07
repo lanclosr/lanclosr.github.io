@@ -82,34 +82,15 @@ $(document).ready(function() {
 
     legend.addTo(map);
     
-    //splash screen to capture geolocation
-    $( function() {
-        $( "#dialog-confirm" ).dialog({
-            resizable: false,
-            height: "auto",
-            width: 400,
-            modal: true,
-            buttons: {
-                "Find My Location": function() {
-                    $( this ).dialog('close', function(){
-                        map.locate({setView: true, maxZoom: 15})
-                    });
-                },
-                Cancel: function() {
-                    $( this ).dialog( "close" );
-                }
-                }
-            });
-    });
     
     //set geolocation for the user
-    //$('.pure-button').on('click', function(){
-       // map.locate({setView: true, maxZoom: 15});
-    //});
+    $('.pure-button').on('click', function(){
+        map.locate({setView: true, maxZoom: 15});
+    });
 
-    //map.on('locationfound', onLocationFound);
-    //function onLocationFound(e) {
-        //console.log(e);
-        //L.marker(e.latlng).addTo(map)
-    //}
+    map.on('locationfound', onLocationFound);
+    function onLocationFound(e) {
+        console.log(e);
+        L.marker(e.latlng).addTo(map)
+    }
 });

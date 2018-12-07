@@ -29,11 +29,3 @@ body {
     stroke-width: 0.5px;
     stroke-linecap: round;
 }
-
-table {
-	font-size: 1em;
-}
-
-.ui-draggable, .ui-droppable {
-	background-position: top;
-}
