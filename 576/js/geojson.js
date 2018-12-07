@@ -7,15 +7,15 @@ $(document).ready(function() {
        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
        
        //create the map using the lat and long as center
-       var map = L.map('map').setView(latlng, 13);
+       var map = L.map('map').setView(latlng, 11);
        
        //set the basemap
        var basemap = L.esri.basemapLayer('Streets').addTo(map);
        
        //add the hazard layer
        var hazards = L.esri.tiledMapLayer({
-           url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/0',
-           maxzoom: 13,
+           url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/',
+           maxzoom: 11,
        }).addTo(map);
        
        //bind a popup to the features
