@@ -1,23 +1,8 @@
 /* Stylesheet by Ryan Lanclos, 2018 UWisc Geog575 */
 
-body {
-    background-color: #1c2433;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #cccccc;
-    padding-top: 50px;
-}
-
-.navbar{
-    background-color: #1c2433;
-    text-decoration-color:cornflowerblue;
-}
-
-.container-fluid, .row{
-    background-color: #f5f5f5;
-}
-
-#map {
-    height:92%;
-    position: absolute;
-    right:0;
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
 }
