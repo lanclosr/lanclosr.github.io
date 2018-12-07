@@ -9,7 +9,7 @@ $(document).ready(function() {
        //set the basemap
        var basemap = L.esri.basemapLayer('Streets').addTo(map);
        var hazards = L.esri.featureLayer({
-           url: 'https://services.arcgis.com/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolized/FeatureServer',
+           url: 'https://services.arcgis.com/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolized/FeatureServer/0',
            maxzoom: 13,
        }).addTo(map); 
        //drop a marker at the user location from lat and long
