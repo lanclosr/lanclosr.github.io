@@ -13,11 +13,11 @@ $(document).ready(function() {
        var basemap = L.esri.basemapLayer('Streets').addTo(map);
        
        //add the vector hazard layer for viewing
-       var hazardsVector = L.esri.tiledMapLayer({
-           url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/',
-           opacity: 0.4,
-           maxzoom: 11,
-       }).addTo(map);
+       //var hazardsVector = L.esri.tiledMapLayer({
+           //url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/',
+           //opacity: 0.4,
+           //maxzoom: 11,
+       //}).addTo(map);
        
        //set the style for hazard json - clear for query/popup only
        var hazardsStyle = {
