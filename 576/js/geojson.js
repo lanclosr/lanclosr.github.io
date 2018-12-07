@@ -101,6 +101,7 @@ $(document).ready(function() {
                 }
                 }
             });
+        return false
     });
     
     //set geolocation for the user
@@ -113,6 +114,4 @@ $(document).ready(function() {
         //console.log(e);
         //L.marker(e.latlng).addTo(map)
     //}
-    
-    //.bindPopup('THIS AREA IS DESIGNATED AS **add attribute here**').openPopup();
 });
