@@ -15,7 +15,7 @@ $(document).ready(function() {
            "opacity": 0.4
        };
        //load FEMA national layer and use the style above
-       $.getJSON("https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json",function(data){
+       $.getJSON("https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28/query?where=1=1&outFields=*&outSR=4326&f=geojson",function(data){
            L.geoJson(data).addTo(map);
         });
        
