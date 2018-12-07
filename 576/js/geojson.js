@@ -5,7 +5,6 @@ $(document).ready(function() {
     navigator.geolocation.getCurrentPosition(function(location) {
         var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
     
-    
     //set variables for the map
     var light = L.esri.basemapLayer('Gray'),
         streets   = L.esri.basemapLayer('Streets'),
@@ -100,4 +99,5 @@ $(document).ready(function() {
         //console.log(e);
         //L.marker(e.latlng).addTo(map)
     //}
+    });
 });
