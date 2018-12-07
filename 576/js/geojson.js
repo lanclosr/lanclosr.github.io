@@ -21,7 +21,9 @@ $(document).ready(function() {
            style: floodplainStyle,
        }).addTo(map); 
        //drop a marker at the user location from lat and long
-       var marker = L.marker(latlng).addTo(map);
+       var marker = L.marker(latlng).bindPopup(function (femaZones) {
+           return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
+       }).addTo(map);
        
    });
 });
