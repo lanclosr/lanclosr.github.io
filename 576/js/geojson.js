@@ -15,11 +15,20 @@ $(document).ready(function() {
            "opacity": 0.4
        };
        //load FEMA national layer and use the style above
-       var femaZones = L.esri.featureLayer({
+       L.esri.dynamicMapLayer({
            url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28',
-           maxzoom: 15,
-           style: floodplainStyle,
-       }).addTo(map); 
+           maxZoom: 15,
+           opacity : 0.25,
+           useCors: false
+       }).addTo(map);
+       
+       
+       
+       //var femaZones = L.esri.featureLayer({
+           //url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28',
+           //maxzoom: 15,
+           //style: floodplainStyle,
+       //}).addTo(map); 
        //drop a marker at the user location from lat and long
        var marker = L.marker(latlng).bindPopup(function (layer) {
            return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
