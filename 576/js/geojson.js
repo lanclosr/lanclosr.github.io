@@ -93,7 +93,6 @@ $(document).ready(function() {
                 "Find My Location": function() {
                     $( this ).dialog('close', function(){
                         map.locate({setView: true, maxZoom: 15})
-                        isConfirmed=true;
                     });
                 },
                 Cancel: function() {
@@ -101,7 +100,6 @@ $(document).ready(function() {
                 }
                 }
             });
-        return false;
     });
     
     //set geolocation for the user
