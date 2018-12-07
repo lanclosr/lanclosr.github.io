@@ -13,32 +13,17 @@ $(document).ready(function() {
        var basemap = L.esri.basemapLayer('Streets').addTo(map);
        
        //add the vector hazard layer for viewing
-       //var hazardsVector = L.esri.tiledMapLayer({
-           //url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/',
-           //opacity: 0.4,
-           //maxzoom: 11,
-       //}).addTo(map);
+       var hazardsVector = L.esri.tiledMapLayer({
+           url: 'https://tiles.arcgis.com/tiles/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolize_Level11/MapServer/',
+           opacity: 0.4,
+           maxzoom: 11,
+       }).addTo(map);
        
-       //set the style for hazard json - clear for query/popup only
-       var hazardsStyle = {
-           "color": "white",
-           "weight": 0,
-           "opacity": 0
-       };
-       
-       //load the json of the hazard data for query
-       $.getJSON("data/hazards.json",function(data){
-           var hazardsJson = L.geoJson(data, {style: hazardsStyle,
-                                               onEachFeature: function(feature, featureLayer) {
-                                                   featureLayer.bindPopup("<b>This area is at risk for the following key hazards:</b></br>" + " Flooding: " + (feature.properties.Flood).toLocaleString('en') + "<br>Hurricane: " + (feature.properties.Hurricane).toLocaleString('en') + "<br>Wildfire: " + (feature.properties.Wildfire).toLocaleString('en') + "<br>Earthquake: " + (feature.properties.Earthquake).toLocaleString('en') );
-                                               }
-                                              }).addTo(map);
-       });
        
        //bind a popup to the features
-       //var showMe = hazards.bindPopup(function (layer) {
-           //return L.Util.template('<p>This location is at risk for the following hazards:</br>Flood:{Flood}</br>Hurricane:{Hurricane}</p>', //layer.feature.properties);
-       //});
+       var showMe = hazards.bindPopup(function (layer) {
+           return L.Util.template('<p>This location is at risk for the following hazards:</br>Flood:{Flood}</br>Hurricane:{Hurricane}</p>', layer.feature.properties);
+       });
        
        //drop a marker at the user location from lat and long
        var marker = L.marker(latlng).addTo(map);
