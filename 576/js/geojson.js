@@ -16,6 +16,17 @@ $(document).ready(function() {
        var marker = L.marker(latlng).bindPopup(function (layer) {
            return L.Util.template('<p>THIS AREA IS DESIGNATED AS {ZONE_SUBTY}.</p>', layer.feature.properties);
        }).addTo(map);
-       
+       //add Esri geocoder
+        var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+
+        var searchControl = L.esri.Geocoding.geosearch({
+            providers: [
+                arcgisOnline,
+                L.esri.Geocoding.mapServiceProvider({
+                    label: 'States and Counties',
+                    url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
+                })
+            ]
+        }).addTo(map);
    });
 });
