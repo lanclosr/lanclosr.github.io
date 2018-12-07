@@ -11,7 +11,6 @@ $(document).ready(function() {
        var hazards = L.esri.featureLayer({
            url: 'https://services.arcgis.com/0ZRg6WRC7mxSLyKX/arcgis/rest/services/Hazard_Layer_Symbolized/FeatureServer',
            maxzoom: 13,
-           style: floodplainStyle,
        }).addTo(map); 
        //drop a marker at the user location from lat and long
        var marker = L.marker(latlng).bindPopup(function (layer) {
