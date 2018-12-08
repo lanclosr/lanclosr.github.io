@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Popup dock positions - 4.9</title>
+  <title>Know Your Risk: Flooding</title>
 
   <style>
     html,
@@ -65,7 +65,8 @@
 
       var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
-          id: "b194a6d4272343adab640715f5e3f259"
+          id: "2db7d9960d114d66b8797714855835e5"    
+          //id: "b194a6d4272343adab640715f5e3f259"
         }
       });
 
@@ -83,7 +84,17 @@
         container: "viewDiv"
       });
 
-      popup = view.popup;
+      var popup = view.popup;
+    
+      //add locate function and set a marker
+      var locateBtn = new Locate({
+          view: view
+      });
+
+      // Add the locate widget to the top left corner of the view
+      view.ui.add(locateBtn, {
+          position: "top-left"
+      });
 
       view.when(function() {
 
@@ -97,21 +108,12 @@
 
         // Watch currentDockPosition of the popup and open the
         // popup at the specified position.
-        popup.watch("currentDockPosition", function(value) {
-          popup.visible = true;
-        });
+        //popup.watch("currentDockPosition", function(value) {
+          //popup.visible = true;
+        //});
 
-        var selectNode = document.getElementById("dockPositionControl");
-          
-        //add locate function and set a marker
-        var locateBtn = new Locate({
-            view: view
-        });
-
-        // Add the locate widget to the top left corner of the view
-          view.ui.add(locateBtn, {
-            position: "top-left"
-            });
+        //var selectNode = document.getElementById("dockPositionControl");
+    
         });
     });
   </script>
@@ -119,7 +121,9 @@
 
 <body>
     <nav class="navbar navbar-light bg-dark navbar-fixed-top header">
-        <a class="navbar-brand">Know Your Risk: Hazard Lookup</a>
+        <a class="navbar-brand">
+            <img src="img/floodimg.svg" width="30" height="30" class="d-inline-block align-top" alt=""> Know Your Risk: Flooding</a>
+        <a class="navbar-xsmall"> Ryan Lanclos | University of Wisconsin-Madison</a>
     </nav>
     <div id="viewDiv">
     </div>
