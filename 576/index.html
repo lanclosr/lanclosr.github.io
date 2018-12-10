@@ -87,12 +87,12 @@
       var popup = view.popup;
     
       //add locate function and set a marker
-      var locateBtn = new Locate({
+      var locateWidget = new Locate({
           view: view
       });
 
       // Add the locate widget to the top left corner of the view
-      view.ui.add(locateBtn, {
+      view.ui.add(locateWidget, {
           position: "top-left"
       });
 
@@ -103,7 +103,7 @@
         popup.open({
           title: "Explore Your Risk",
           location: centerPoint,
-          content: "Click anywhere on the map to see what hazards a location is exposed to based on available data."
+          content: "Click anywhere on the map to see what hazards a location is exposed to based on available data. <br><br> <b>Green indicates that FEMA Flood Zone data is available for this county. Please use your location, or search for an address, to see your local flood risk. </b><br><br> If a county is not green, FEMA Flood Zone data is not available for this county."
         });
 
         // Watch currentDockPosition of the popup and open the
