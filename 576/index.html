@@ -34,9 +34,10 @@
       "esri/views/MapView",
       "esri/WebMap",
       "esri/widgets/Locate",
-      "esri/widgets/Search"
+      "esri/widgets/Search",
+      "esri/widgets/Home"
     ], function(
-      Map, MapView, WebMap, Locate, Search
+      Map, MapView, WebMap, Locate, Search, Home
     ) {
 
       var webmap = new WebMap({
@@ -61,31 +62,42 @@
 
       var popup = view.popup;
     
-      //add locate function and set a marker
+      //create and config the locate widget
       var locateWidget = new Locate({
           view: view,
           scale: 10000
       });
 
-      // Add the locate widget to the top left corner of the view
+      // Add locate widget to the view
       view.ui.add(locateWidget, {
           position: "top-left",
           index: 0
       });
         
-      //add search widget for geocode
+      //create and config search widget for geocode
       var searchWidget = new Search({
         view: view,
         popupEnabled: false,
         locationEnabled: true,
         zoomScale: 10000
       });
-      // Adds the search widget below other elements in
-      // the top left corner of the view
+      // Add the search widget to the view
       view.ui.add(searchWidget, {
           position: "top-left",
           index: 0
       });
+        
+      //create and config a home button widget
+      var homeWidget = new Home({
+          view: view
+      });
+      
+      //add the home button to the view
+      view.ui.add(homeWidget,{
+          position: "top-left",
+          index: 2
+      });
+
 
       view.when(function() {
 
