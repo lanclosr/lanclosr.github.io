@@ -58,9 +58,10 @@
       "esri/Map",
       "esri/views/MapView",
       "esri/WebMap",
-      "esri/widgets/Locate"
+      "esri/widgets/Locate",
+      "esri/widgets/Search"
     ], function(
-      Map, MapView, WebMap, Locate
+      Map, MapView, WebMap, Locate, Search
     ) {
 
       var webmap = new WebMap({
@@ -94,7 +95,22 @@
 
       // Add the locate widget to the top left corner of the view
       view.ui.add(locateWidget, {
-          position: "top-left"
+          position: "top-left",
+          index: 0
+      });
+        
+      //add search widget for geocode
+      var searchWidget = new Search({
+        view: view,
+        popupEnabled: false,
+        locationEnabled: false,
+        zoomScale: 10000
+      });
+      // Adds the search widget below other elements in
+      // the top left corner of the view
+      view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 0
       });
 
       view.when(function() {
@@ -106,28 +122,18 @@
           location: centerPoint,
           content: "Click anywhere on the map to see what hazards a location is exposed to based on available data. <br><br> <b>Green indicates that FEMA Flood Zone data is available for this county. Please use your location, or search for an address, to see your local flood risk. </b><br><br> If a county is not green, FEMA Flood Zone data is not available for this county."
         });
-
-        // Watch currentDockPosition of the popup and open the
-        // popup at the specified position.
-        //popup.watch("currentDockPosition", function(value) {
-          //popup.visible = true;
-        //});
-
-        //var selectNode = document.getElementById("dockPositionControl");
-    
-        });
+      });
     });
   </script>
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-dark navbar-fixed-top header">
+    <nav class="navbar fixed-top navbar-light bg-dark">
         <a class="navbar-brand">
             <img src="img/floodimg.svg" width="30" height="30" class="d-inline-block align-top" alt=""> Know Your Risk: Flooding</a>
         <a class="navbar-xsmall"> Ryan Lanclos | University of Wisconsin-Madison</a>
     </nav>
-    <div id="viewDiv">
-    </div>
+    <div id="viewDiv"></div>
 </body>
 
 </html>
