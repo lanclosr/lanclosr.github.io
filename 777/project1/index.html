@@ -1,0 +1,196 @@
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>RPL Geog777: Explore Cancer & Nitrate in Wisconsin.</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--load my css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--load mapbox-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!--load jquery, turf, simplestats and math-->
+    <script src="lib/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://unpkg.com/simple-statistics@7.0.1/dist/simple-statistics.min.js"></script>
+    <script src="https://unpkg.com/mathjs@5.5.0/dist/math.min.js"></script>
+    <!--bootstrap navbar header-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--nav bar that takes cell size from user-->
+    <nav class="navbar fixed-top navbar-light justify-content-between">
+      <a class="navbar-brand">
+        <img src="./img/map.svg" width="30" height="30" href="#" alt="">
+        &nbsp; &nbsp;Explore Cancer Rates in Wisconsin</a>
+        <form class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="Cell Size (km)" aria-label="cell size" id="userInput">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="button" onclick="dataWrangler()">Show Results</button>
+        </form>
+    </nav> 
+    <!--setup divs for map, etc-->
+    <div id='map'></div>
+    <div class='map-overlay' id='legend'></div>
+    <!--set a callout that give the user some guidance to start-->
+    <div class="callout">
+          <div class="callout-header">About this App</div>
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          <div class="callout-container">
+            <p>Explore any relationship that might exist between nitrate well samples and the rate of cancer within census tracts of Wisconsin. <br><br> Enter a cell size above, in kilometers, to interpolate the well sample data. This data is used to conduct a linear regression and visually show where there is under (blue) or over (red) predicition of the cancer rates based on the analysis.<br><br>Values below 5km will take time to process. Please be patient!</p>
+          </div>
+    </div>
+    <!--setup map-->
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGFuY2xvcyIsImEiOiJjanM0MHV5ZHIwMDVhNDNydzI1cnBwa2JnIn0.4ITFUvJ6ZP5OB2riV-udKg';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v9',
+        center: [-88.79, 44.78],
+        zoom: 6
+    });
+    //map nav elements 
+    var nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'top-left');
+    </script>
+    <script>
+    //the main function called from the user input starts below:
+    function dataWrangler() {
+        //make sure the map is clear if this is a repeat run for the user
+        if (map.getLayer("census-tracts")) {
+            map.removeLayer("census-tracts");
+            //alert them this will reset the map
+            alert('NOTE: This will overwrite the current map with new data.')
+            console.log('completed: removed the layer to reset the map')
+        }
+        if (map.getSource("census-tracts")) {
+            map.removeSource("census-tracts");
+            console.log('completed: removed the layer source to reset the map')
+        }
+        //set cell size from user input; if null, set deafult to 10km for speed
+        var input = document.getElementById("userInput").value;
+        if (input == null || input == "") {
+            alert('NOTE: You did not enter a cell size for the analysis. We will use the defult cell size of 10km.')
+            input = 10;
+        } else {
+            input = parseInt(input);
+        } 
+        console.log(input + ' km cell size is being used for this analysis');
+        //load census tracts and aggregate, etc.
+        $.getJSON('./data/tracts.json',function(tracts){
+            //load well sample points
+            $.getJSON('./data/wells.json',function(wells){
+                //IDW options
+                var options = {gridType: 'points', property: 'nitr_ran'};
+                //Run IDW to interpolate the sample points into a surface in memory called idw
+                var idw = turf.interpolate(wells, input, options);
+                console.log('completed: IDW interpolation of well samples at');
+                //aggregate points to the census tracts and hold in memory as count
+                var count = turf.collect(tracts, idw, 'nitr_ran', 'nitrate');
+                console.log('completed: aggregated IDW points to census tracts')
+                //average the nitrate values in each census tract to get one value stored in count
+                count.features.forEach (function(average){
+                    average.properties.nitrate = average.properties.nitrate.reduce(function(sum,a){
+                        return sum + a;
+                    },0) / (average.properties.nitrate.length || 1);
+                })
+                console.log('completed: averaged all IDW points per census tract')
+                //linear regression procecss below
+                //set a simple array to use for the linear regression combining the
+                //cancer rate and new nitrate average. If nitrate is 0 due to no
+                //points in the IDW surface, find the nearest one and assign that value.
+                var simpleArray = [];
+                var findCenter = turf.centerOfMass(count);
+                var nearestPt = turf.nearestPoint(findCenter, idw);
+                count.features.forEach (function(buildArray){
+                    var catcher = buildArray.properties.nitrate;
+                    if (catcher > 0) {
+                        var y = (buildArray.properties.nitrate);
+                        var x = (buildArray.properties.canrate);
+                        simpleArray.push([x, y]);
+                    } else {
+                        var y = nearestPt.properties.nitr_ran;
+                        var x = (buildArray.properties.canrate);
+                        simpleArray.push([y,x]);
+                    }
+                })
+                console.log('completed: created an array of nitrate (avg) and cancer rates per census tract.')
+                //now start linear regression using the simple array; this creates the regression
+                var l = ss.linearRegressionLine(ss.linearRegression(simpleArray));
+                count.features.forEach (function(regression){
+                    //use the linear regression line to calculate the rate of cancer based on nitrate average
+                    regression.properties.ID = l(regression.properties.nitrate);
+                    //calculate the residual of the actual cancer rate (canrate) vs the calculated value (ID).
+                    //This residul is what we will map to show the potential relationship
+                    regression.properties.Z_Mean = (regression.properties.canrate - regression.properties.ID);
+                })
+                console.log('completed: linear regression and residual calculated for cancer rates')
+
+                // Add a layer to the map for the census tracts from our in memory count json data
+                    map.addLayer({
+                        id: 'census-tracts',
+                        type: 'fill',
+                        source: {
+                            type: 'geojson',
+                            data: count
+                        },
+                        paint: {
+                            //symbolize the census tracts using a linear interpolation of the residual
+                            "fill-color": [ "interpolate",
+                                    [ "linear"],
+                                    ["get", "Z_Mean"],
+                                           -1, "#2b83ba", //weaker, or, lower values in blue
+                                           0, "#f7f7f7", //neutral in white
+                                           5, "#d7191c" //stronger, or higher values in red
+                            ],
+                            'fill-outline-color': '#ffffff',
+                            'fill-opacity': 0.7
+                        },
+
+                    });
+                    console.log('completed: added layer of residuals to the map and symbolized')
+                    //setup a legend for the user
+                    //these two variables should match the symbology above
+                    var layers = ['Weaker', 'Neutral', 'Stronger'];
+                    var colors = ['#2b83ba', '#f7f7f7', '#d7191c'];
+                    for (i = 0; i < layers.length; i++) {
+                        var layer = layers[i];
+                        var color = colors[i];
+                        var item = document.createElement('div');
+                        var key = document.createElement('span');
+                        key.className = 'legend-key';
+                        key.style.backgroundColor = color;
+
+                        var value = document.createElement('span');
+                        value.innerHTML = layer;
+                        item.appendChild(key);
+                        item.appendChild(value);
+                        legend.appendChild(item);
+                    }
+
+                    // setup a pop variable that we will use for hover tooltip below
+                    var popup = new mapboxgl.Popup({
+                        closeButton: false
+                    });
+                    //setup hover tooltip on each census tract for the user
+                    map.on('mousemove', 'census-tracts', function(e) {
+                        // Change the cursor style as a UI indicator.
+                        map.getCanvas().style.cursor = 'pointer';
+                        var feature = e.features[0];
+                        // Display a popup with the custom HTML below pulling from
+                        //the calculated values in count
+                        popup.setLngLat(e.lngLat)
+                            .setHTML('<b>In this Census Tract:</b> ' + '<br>' + 'Cancer Rate: ' + e.features[0].properties.canrate + '<br>' + 'Nitrate Rate: ' + (e.features[0].properties.nitrate).toFixed(2) + '<br>' + 'Residual: ' + (e.features[0].properties.Z_Mean).toFixed(2))
+                            .addTo(map);
+                        });
+                    //when the mouse leaves the census-tracts, reset the cursor and remove the last tooltip
+                    map.on('mouseleave', 'census-tracts', function() {
+                        map.getCanvas().style.cursor = '';
+                        popup.remove();
+                    });
+            });  
+        });
+    }
+    </script>
+</body>
+</html>
