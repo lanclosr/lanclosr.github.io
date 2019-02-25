@@ -22,6 +22,17 @@ body {
     background-color: dimgray;
 }
 
+.modal-header {
+    background-color: steelblue;
+    color: white;
+    font: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.modal-body {
+    font: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    outline-color: white;
+}
+
 #map { 
     position:absolute; 
     top: 60px;

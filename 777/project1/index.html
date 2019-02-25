@@ -19,28 +19,43 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-light">
+    <!--header bar-->
+    <nav class="navbar fixed-top navbar-light justify-content-between">
       <a class="navbar-brand">
         <img src="./img/map.svg" width="30" height="30" href="#" alt="">
-        &nbsp; &nbsp;Explore Cancer Rates in Wisconsin</a>
+        &nbsp; &nbsp;Exploring Cancer Rates</a>
+        <span>
+            <img src="./img/help.svg" width="30" height="30" alt="" data-toggle="modal" data-target="#ModalCenter">
+        </span>
     </nav>
+    
     <!--setup divs for map, etc-->
     <div id='map'></div>
     <div class='map-overlay' id='legend'></div>
+    
     <!--this is the input form for the user cell size-->
     <div class="input-group mb-3">
           <div class="input-group-prepend">
             <button class="btn btn-mine" type="button" onclick="dataWrangler()" ><img src="./img/play.svg" width="20" height="20" href="#" alt=""></button>
           </div>
-            <div class="col-xs-2"><input type="text" class="form-control input-sm" placeholder="Enter Cell Size (km)" aria-label="" aria-describedby="basic-addon1" id="userInput"></div>
+            <div class="col-xs-2"><input type="text" class="form-control input-sm" placeholder="Enter Cell Size (km)" aria-label="userInput" aria-describedby="basic-addon1" id="userInput"></div>
     </div>
-    <!--set a callout that give the user some guidance to start-->
-    <div class="callout">
-          <div class="callout-header">About this App</div>
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          <div class="callout-container">
-            <p>Explore any relationship that might exist between nitrate well samples and the rate of cancer within census tracts of Wisconsin. <br><br> Enter a cell size above, in kilometers, to interpolate the well sample data. This data is used to conduct a linear regression and visually show where there is under (blue) or over (red) predicition of the cancer rates based on the analysis.<br><br>Values below 5km will take time to process. Please be patient!</p>
+    
+    <!--set a modal that gives the user some guidance to start-->
+    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">About this App</h5>
           </div>
+          <div class="modal-body">
+            Explore any relationship that might exist between nitrate well samples and the rate of cancer within census tracts of Wisconsin. <br><br> Enter a cell size to the left, in kilometers, to interpolate the well sample data. This data is used to conduct a linear regression and visually show where there is under (blue) or over (red) predicition of the cancer rates based on the analysis.<br><br>Values below 5km will take time to process. Please be patient!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-mine" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
     <!--setup map-->
     <script>
