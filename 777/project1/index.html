@@ -143,7 +143,7 @@
                     if (catcher > 0) {
                         var y = (buildArray.properties.nitrate);
                         var x = (buildArray.properties.canrate);
-                        simpleArray.push([x, y]);
+                        simpleArray.push([y, x]);
                     } else {
                         var y = nearestPt.properties.nitr_ran;
                         var x = (buildArray.properties.canrate);
@@ -151,6 +151,8 @@
                     }
                 })
                 console.log('completed: created an array of nitrate (avg) and cancer rates per census tract.')
+                //set an array that we will use to calc statistics on the values later
+                var minMaxCalc = [];
                 //now start linear regression using the simple array; this creates the regression
                 var l = ss.linearRegressionLine(ss.linearRegression(simpleArray));
                 count.features.forEach (function(regression){
@@ -159,9 +161,13 @@
                     //calculate the residual of the actual cancer rate (canrate) vs the calculated value (ID).
                     //This residul is what we will map to show the potential relationship
                     regression.properties.Z_Mean = (regression.properties.canrate - regression.properties.ID);
+                    console.log(regression.properties.Z_Mean);
+                    minMaxCalc.push(regression.properties.Z_Mean);
                 })
                 console.log('completed: linear regression and residual calculated for cancer rates')
-
+                //find max and min to set the symbology scale
+                var min = ss.min(minMaxCalc);
+                var max = ss.max(minMaxCalc);
                 // Add a layer to the map for the census tracts from our in memory count json data
                     map.addLayer({
                         id: 'census-tracts',
@@ -175,12 +181,12 @@
                             "fill-color": [ "interpolate",
                                     [ "linear"],
                                     ["get", "Z_Mean"],
-                                           -1, "#2b83ba", //weaker, or, lower values in blue
+                                           min, "#2b83ba", //weaker, or, lower values in blue
                                            0, "#f7f7f7", //neutral in white
-                                           5, "#d7191c" //stronger, or higher values in red
+                                           max, "#d7191c" //stronger, or higher values in red
                             ],
                             'fill-outline-color': '#ffffff',
-                            'fill-opacity': 0.7
+                            'fill-opacity': 0.8
                         },
 
                     });
