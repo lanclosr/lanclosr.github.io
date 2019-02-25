@@ -19,19 +19,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!--nav bar that takes cell size from user-->
-    <nav class="navbar fixed-top navbar-light justify-content-between">
+    <nav class="navbar fixed-top navbar-light">
       <a class="navbar-brand">
         <img src="./img/map.svg" width="30" height="30" href="#" alt="">
         &nbsp; &nbsp;Explore Cancer Rates in Wisconsin</a>
-        <form class="form-inline">
-        <input class="form-control mr-sm-2" type="text" placeholder="Cell Size (km)" aria-label="cell size" id="userInput">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="button" onclick="dataWrangler()">Show Results</button>
-        </form>
-    </nav> 
+    </nav>
     <!--setup divs for map, etc-->
     <div id='map'></div>
     <div class='map-overlay' id='legend'></div>
+    <!--this is the input form for the user cell size-->
+    <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-mine" type="button" onclick="dataWrangler()" ><img src="./img/play.svg" width="20" height="20" href="#" alt=""></button>
+          </div>
+            <div class="col-xs-2"><input type="text" class="form-control input-sm" placeholder="Enter Cell Size (km)" aria-label="" aria-describedby="basic-addon1" id="userInput"></div>
+    </div>
     <!--set a callout that give the user some guidance to start-->
     <div class="callout">
           <div class="callout-header">About this App</div>
@@ -52,6 +54,25 @@
     //map nav elements 
     var nav = new mapboxgl.NavigationControl();
     map.addControl(nav, 'top-left');
+    //setup a legend for the user
+    //these two variables should match the symbology above
+    var layers = ['Under Prediction', 'Neutral', 'Over Prediction'];
+    var colors = ['#2b83ba', '#f7f7f7', '#d7191c'];
+
+    for (i = 0; i < layers.length; i++) {
+        var layer = layers[i];
+        var color = colors[i];
+        var item = document.createElement('div');
+        var key = document.createElement('span');
+        key.className = 'legend-key';
+        key.style.backgroundColor = color;
+
+        var value = document.createElement('span');
+        value.innerHTML = layer;
+        item.appendChild(key);
+        item.appendChild(value);
+        legend.appendChild(item);
+    };
     </script>
     <script>
     //the main function called from the user input starts below:
@@ -149,25 +170,6 @@
 
                     });
                     console.log('completed: added layer of residuals to the map and symbolized')
-                    //setup a legend for the user
-                    //these two variables should match the symbology above
-                    var layers = ['Weaker', 'Neutral', 'Stronger'];
-                    var colors = ['#2b83ba', '#f7f7f7', '#d7191c'];
-                    for (i = 0; i < layers.length; i++) {
-                        var layer = layers[i];
-                        var color = colors[i];
-                        var item = document.createElement('div');
-                        var key = document.createElement('span');
-                        key.className = 'legend-key';
-                        key.style.backgroundColor = color;
-                      
-                        var value = document.createElement('span');
-                        value.innerHTML = layer;
-                        item.appendChild(key);
-                        item.appendChild(value);
-                        legend.appendChild(item);
-                    }
-
                     // setup a pop variable that we will use for hover tooltip below
                     var popup = new mapboxgl.Popup({
                         closeButton: false
