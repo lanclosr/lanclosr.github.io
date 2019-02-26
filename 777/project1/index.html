@@ -72,7 +72,7 @@
     //setup a legend for the user
     //these two variables should match the symbology above
     var layers = ['Under Prediction', 'Neutral', 'Over Prediction'];
-    var colors = ['#2b83ba', '#f7f7f7', '#d7191c'];
+    var colors = ['#2c7bb6', '#ffffff', '#d7191c'];
 
     for (i = 0; i < layers.length; i++) {
         var layer = layers[i];
@@ -168,6 +168,7 @@
                 //find max and min to set the symbology scale
                 var min = ss.min(minMaxCalc);
                 var max = ss.max(minMaxCalc);
+                var mean = ss.mean(minMaxCalc);
                 // Add a layer to the map for the census tracts from our in memory count json data
                     map.addLayer({
                         id: 'census-tracts',
@@ -181,12 +182,12 @@
                             "fill-color": [ "interpolate",
                                     [ "linear"],
                                     ["get", "Z_Mean"],
-                                           min, "#2b83ba", //weaker, or, lower values in blue
-                                           0, "#f7f7f7", //neutral in white
+                                           min, "#2c7bb6", //weaker, or, lower values in blue
+                                           mean, "#ffffff", //neutral in white
                                            max, "#d7191c" //stronger, or higher values in red
                             ],
                             'fill-outline-color': '#ffffff',
-                            'fill-opacity': 0.8
+                            'fill-opacity': 0.65
                         },
 
                     });
