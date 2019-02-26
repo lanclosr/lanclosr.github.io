@@ -32,7 +32,7 @@
     <!--setup divs for map, etc-->
     <div id='map'></div>
     <div class='map-overlay' id='legend'></div>
-    <div class='callout' id='callout'></div>
+    <div class='map-overlay' id='results'></div>
     <!--this is the input form for the user cell size-->
     <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -156,7 +156,7 @@
                 //now start linear regression using the simple array; this creates the regression
                 var l = ss.linearRegressionLine(ss.linearRegression(simpleArray));
                 var rSqrd = ss.rSquared(simpleArray, l);
-                console.log(rSqrd);
+                //(rSqrd).toFixed(2);
                 count.features.forEach (function(regression){
                     //use the linear regression line to calculate the rate of cancer based on nitrate average
                     regression.properties.ID = l(regression.properties.nitrate);
@@ -166,10 +166,22 @@
                     minMaxCalc.push(regression.properties.Z_Mean);
                 })
                 console.log('completed: linear regression and residual calculated for cancer rates')
+                //alert the rsqaured value and that the process was successful
+                //neeed to add code here!
                 //find max and min to set the symbology scale
                 var min = ss.min(minMaxCalc);
                 var max = ss.max(minMaxCalc);
                 var mean = ss.mean(minMaxCalc);
+                //write the results to the dom for the user to show goodness of fit
+                var item = document.createElement('div');
+                var value = document.createElement('span');
+                //clear the dom in case there is a previous run of the analysis
+                while (results.firstChild) {
+                    results.removeChild(results.firstChild);
+                }
+                value.innerHTML = '<b>Cell size: </b> ' + input + 'km  |  <b>R<sup>2</sup></b>: ' + (rSqrd).toPrecision(2);
+                item.appendChild(value);
+                results.appendChild(item);
                 // Add a layer to the map for the census tracts from our in memory count json data
                     map.addLayer({
                         id: 'census-tracts',
@@ -213,9 +225,10 @@
                         map.getCanvas().style.cursor = '';
                         popup.remove();
                     });
-            });  
+            });
         });
     }
+   
     </script>
 </body>
 </html>
