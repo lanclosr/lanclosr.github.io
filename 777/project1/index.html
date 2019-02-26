@@ -32,7 +32,7 @@
     <!--setup divs for map, etc-->
     <div id='map'></div>
     <div class='map-overlay' id='legend'></div>
-    
+    <div class='callout' id='callout'></div>
     <!--this is the input form for the user cell size-->
     <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -71,8 +71,8 @@
     map.addControl(nav, 'top-left');
     //setup a legend for the user
     //these two variables should match the symbology above
-    var layers = ['Under Prediction', 'Neutral', 'Over Prediction'];
-    var colors = ['#2c7bb6', '#ffffff', '#d7191c'];
+    var layers = ['Over Prediction', 'Neutral', 'Under Prediction'];
+    var colors = ['#d7191c', '#ffffff', '#2c7bb6'];
 
     for (i = 0; i < layers.length; i++) {
         var layer = layers[i];
@@ -147,7 +147,7 @@
                     } else {
                         var y = nearestPt.properties.nitr_ran;
                         var x = (buildArray.properties.canrate);
-                        simpleArray.push([y,x]);
+                        simpleArray.push([y, x]);
                     }
                 })
                 console.log('completed: created an array of nitrate (avg) and cancer rates per census tract.')
@@ -155,13 +155,14 @@
                 var minMaxCalc = [];
                 //now start linear regression using the simple array; this creates the regression
                 var l = ss.linearRegressionLine(ss.linearRegression(simpleArray));
+                var rSqrd = ss.rSquared(simpleArray, l);
+                console.log(rSqrd);
                 count.features.forEach (function(regression){
                     //use the linear regression line to calculate the rate of cancer based on nitrate average
                     regression.properties.ID = l(regression.properties.nitrate);
                     //calculate the residual of the actual cancer rate (canrate) vs the calculated value (ID).
                     //This residul is what we will map to show the potential relationship
                     regression.properties.Z_Mean = (regression.properties.canrate - regression.properties.ID);
-                    console.log(regression.properties.Z_Mean);
                     minMaxCalc.push(regression.properties.Z_Mean);
                 })
                 console.log('completed: linear regression and residual calculated for cancer rates')
