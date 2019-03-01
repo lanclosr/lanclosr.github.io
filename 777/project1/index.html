@@ -33,13 +33,13 @@
     <div id='map'></div>
     <div class='map-overlay' id='legend'></div>
     <div class='map-overlay' id='results'></div>
-    <!--this is the input form for the user cell size-->
-    <div class="input-group mb-3">
+    <!--this is the input form for the user cell size and distance decay weight-->
+    <div class="input-group input-group-sm mb-3">
           <div class="input-group-prepend">
             <button class="btn btn-mine" type="button" onclick="dataWrangler()" ><img src="./img/play.svg" width="20" height="20" href="#" alt=""></button>
           </div>
-            <div class="col-xs-2"><input type="text" class="form-control input-sm" placeholder="Enter Cell Size (km)" aria-label="userInput" aria-describedby="basic-addon1" id="userInput">
-            <input type="text" class="form-control input-sm" placeholder="Enter Weight (Decay)" aria-label="userInput2" aria-describedby="basic-addon1" id="userInput2"></div>
+            <div class="col-xs-2"><input type="text" class="form-control input-sm" placeholder="Cell Size (km)" aria-label="userInput" aria-describedby="basic-addon1" id="userInput">
+            <input type="text" class="form-control input-sm" placeholder="Distance-Decay Weight" aria-label="userInput2" aria-describedby="basic-addon1" id="userInput2"></div>
     </div>
     
     <!--set a modal that gives the user some guidance to start-->
@@ -105,6 +105,7 @@
             console.log('completed: removed the layer source to reset the map')
         }
         //set cell size from user input; if null, set deafult to 10km for speed
+        //set the weight for the distance decay in the interpolation; if null, set the default to 2
         var input = document.getElementById("userInput").value;
         var input2 = document.getElementById("userInput2").value;
         if (input == null || input == "") {
@@ -114,12 +115,13 @@
             input = parseInt(input);
         }
         if (input2 == null || input2 == "") {
-            alert('NOTE: You did not enter a weight of decay for the analysis. We will use the defult of 2.')
+            alert('NOTE: You did not enter a distance of decay weight for the analysis. We will use the defult of 2.')
             input2 = 2;
         } else {
             input2 = parseInt(input2);
         }
         console.log(input + ' km cell size is being used for this analysis');
+        console.log(input2 + ' is the distance-decay weight being used for this analysis')
         //load census tracts and aggregate, etc.
         $.getJSON('./data/tracts.json',function(tracts){
             //load well sample points

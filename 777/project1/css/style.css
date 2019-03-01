@@ -88,6 +88,11 @@ body {
     margin-right: 5px;
 }
 
+.form-control {
+    font-size: 8px;
+    font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
 .input-group {
     position: fixed;
     top:15px;
