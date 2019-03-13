@@ -91,11 +91,11 @@
 
       let editFeature, highlight;
         
-      /*var webmap = new WebMap({
+      var webmap = new WebMap({
           portalItem: { 
               id: "bd4882ebe7304cf3b072944b4b4641c9"
           }
-      });*/
+      });
         
       const featureLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/UserReports/FeatureServer/0",
@@ -103,11 +103,11 @@
         popupEnabled: true,
         id: "reportsLayer"
       });
-        //webmap.layers.add(featureLayer);
-      const map = new Map({
+      webmap.layers.add(featureLayer);
+      /*const map = new Map({
         basemap: "dark-gray",
         layers: [featureLayer]
-      });
+      });*/
 
       const view = new MapView({
         container: "viewDiv",
@@ -341,7 +341,7 @@
 <body>
   <div id="editArea" class="editArea-container">
     <div id="addFeatureDiv" style="display:block;">
-      <h3 class="list-heading">Report Incidents</h3>
+      <h3 class="list-heading">Trail Reports</h3>
       <ul style="font-size: 13px; padding-left: 1.5em;">
         <li>Select report from the list</li>
         <li>Click on the map to create a new report</li>
