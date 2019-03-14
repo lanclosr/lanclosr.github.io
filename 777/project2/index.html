@@ -42,7 +42,9 @@
     ], function(
       Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
     ) {
+        
       var survey = "<a target='_blank' href='https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895'>Submit a Trail Report</a>";
+        
       var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "bd4882ebe7304cf3b072944b4b4641c9"    
@@ -136,7 +138,7 @@
     <nav class="navbar fixed-top navbar-light bg-dark">
         <a class="navbar-brand">
             <img src="img/hike.svg" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Huntsville SP</a>
-            <a class="btn btn-outline-warning btn-sm" href="https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895" target="modal">Submit a Report</a>
+            <a class="btn btn-outline-warning btn-sm" href="https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895" target="_blank">Submit a Report</a>
         </nav>
     <div id="viewDiv"></div>
 </body>
