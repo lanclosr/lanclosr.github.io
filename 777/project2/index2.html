@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Huntsville SP</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Esri js4.10 -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/WebMap",
+      "esri/widgets/Locate",
+      "esri/widgets/Search",
+      "esri/widgets/Home",
+      "esri/layers/FeatureLayer"
+    ], function(
+      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
+    ) {
+        
+      var survey = "<a target='_blank' href='https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895'>Submit a Trail Report</a>";
+        
+      var webmap = new WebMap({
+        portalItem: { // autocasts as new PortalItem()
+          id: "bd4882ebe7304cf3b072944b4b4641c9"    
+        }
+      });
+
+      var view = new MapView({
+        map: webmap,
+        popup: {
+          dockEnabled: true,
+          dockOptions: {
+            // Disables the dock button from the popup
+            buttonEnabled: true,
+            // Ignore the default sizes that trigger responsive docking
+            breakpoint: false,
+          }
+        },
+        container: "viewDiv"
+      });
+
+      var popup = view.popup;
+    
+      //create and config the locate widget
+      var locateWidget = new Locate({
+          view: view,
+          scale: 10000
+      });
+
+      // Add locate widget to the view
+      view.ui.add(locateWidget, {
+          position: "top-left",
+          index: 0
+      });
+        
+      //set search widget source
+      var source = [];
+      source.push({
+          featureLayer: {
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/HuntsvilleSP/FeatureServer/0",
+          },
+              searchFields: ["type"],
+              displayField: "type",
+              exactMatch: false,
+              outFields: ["type"],
+              //name: "Park Facilites",
+              placeholder: "Search Park Facilities",
+              maxResults: 6,
+              maxSuggestions: 3,
+      });
+      //set search widget
+      var searchWidget = new Search({
+          view: view,
+          enablebuttonmode: true,
+          popupEnabled: true,
+          includeDefaultSources: false,
+          sources: source,
+      });
+      
+      // Add the search widget to the view
+      view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 0
+      });
+        
+      //create and config a home button widget
+      var homeWidget = new Home({
+          view: view
+      });
+      
+      //add the home button to the view
+      view.ui.add(homeWidget,{
+          position: "top-left",
+          index: 2
+      });
+      
+      view.when(function() {
+
+        var centerPoint = view.center.clone();
+
+        popup.open({
+          title: "Welcome to Huntsville State Park",
+          location: centerPoint,
+            content: ("Explore your park and search for facilites. If you see an issue on the trail, " + survey)
+        });
+      });
+    });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-light bg-dark">
+        <a class="navbar-brand">
+            <img src="img/hike.svg" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Huntsville SP</a>
+            <a class="btn btn-outline-warning btn-sm" href="javascript:SwapDivsWithClick('viewDiv','reportDiv')">Submit a Report</a>
+      </nav>
+    <div id="viewDiv" style="display:block"></div>
+    <div id="reportDiv" style="display:none">
+    <style>.embed-container {position: relative; height: 0; padding-bottom:80%; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe name="survey123webform" width="500" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Trail Report" src="//survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895?hide=navbar,footer,theme"></iframe></div><script>var survey123webform = document.getElementsByName('survey123webform')[0];window.addEventListener("message",e=>{if(e.data){var t=JSON.parse(e.data);"survey123:onFormLoaded"===t.event&&t.contentHeight&&(survey123webform.parentNode.style.height=t.contentHeight+"px")&&(survey123webform.parentNode.style["padding-bottom"]="unset")}});</script>
+    </div>
+    <script type="text/javascript">
+        function SwapDivsWithClick(div1,div2) {
+           d1 = document.getElementById(div1);
+           d2 = document.getElementById(div2);
+           if( d2.style.display == "none" )
+        {
+            d1.style.display = "none";
+            d2.style.display = "block";
+        }
+            else {
+                d1.style.display = "block";
+                d2.style.display = "none";
+            }
+        };
+    </script>
+</body>
+
+</html>
