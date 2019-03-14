@@ -14,9 +14,7 @@
       height: 100%;
       width: 100%;
     }
-
     
-
   </style>
     <link rel="stylesheet" href="css/style.css">
     <!-- Bootstrap CSS -->
@@ -50,7 +48,6 @@
           id: "bd4882ebe7304cf3b072944b4b4641c9"    
         }
       });
-
       var view = new MapView({
         map: webmap,
         popup: {
@@ -64,7 +61,6 @@
         },
         container: "viewDiv"
       });
-
       var popup = view.popup;
     
       //create and config the locate widget
@@ -72,7 +68,6 @@
           view: view,
           scale: 10000
       });
-
       // Add locate widget to the view
       view.ui.add(locateWidget, {
           position: "top-left",
@@ -121,9 +116,7 @@
       });
       
       view.when(function() {
-
         var centerPoint = view.center.clone();
-
         popup.open({
           title: "Welcome to Huntsville State Park",
           location: centerPoint,
