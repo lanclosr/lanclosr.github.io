@@ -23,6 +23,10 @@ iframe {
     min-height: 350px;
 }
 
+.modal-body {
+    max-height: calc(100vh-200px);
+    overflow-y: auto;
+}
 
 .modal-footer {
     background-color: #333333;
