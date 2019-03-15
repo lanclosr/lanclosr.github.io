@@ -15,3 +15,10 @@ body {
 .container-fluid, .row{
     background-color: #f5f5f5;
 }
+
+iframe {
+    overflow: scroll;
+    width: 100%;
+    border: 0;
+    min-height: 500px;
+}
