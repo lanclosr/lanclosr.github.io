@@ -134,27 +134,25 @@
     <nav class="navbar fixed-top navbar-light bg-dark">
         <a class="navbar-brand">
             <img src="img/hike.svg" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Huntsville SP</a>
-            <a class="btn btn-outline-warning btn-sm" href="javascript:SwapDivsWithClick('viewDiv','reportDiv')">Submit a Report</a>
+            <a class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#modalReport">Submit a Report</a>
       </nav>
-    <div id="viewDiv" style="display:flex"></div>
-    <div id="reportDiv" style="display:none">
-    <style>.embed-container {position: relative; height: 0; padding-bottom:80%; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe name="survey123webform" width="500" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Trail Report" src="//survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895?hide=navbar,footer,description"></iframe></div><script>var survey123webform = document.getElementsByName('survey123webform')[0];window.addEventListener("message",e=>{if(e.data){var t=JSON.parse(e.data);"survey123:onFormLoaded"===t.event&&t.contentHeight&&(survey123webform.parentNode.style.height=t.contentHeight+"px")&&(survey123webform.parentNode.style["padding-bottom"]="unset")}});</script>
+    <div id="viewDiv"></div>
+    <!--Modal: load the report form-->
+    <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body mb-0 p-0">
+            <div id="report-container" class="z-depth-1-half report-container" style="height: 500px">
+              <iframe src="https://uw-mad.maps.arcgis.com/apps/GeoForm/index.html?appid=8b0cbf285eba45a7a4bce9f0c17a9a50" frameborder="0"
+                style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-primary btn-md" data-dismiss="modal">Close <i class="fas fa-times ml-1"></i></button>
+          </div>
+        </div>
+      </div>
     </div>
-    <script type="text/javascript">
-        function SwapDivsWithClick(div1,div2) {
-           d1 = document.getElementById(div1);
-           d2 = document.getElementById(div2);
-           if( d2.style.display == "none" )
-        {
-            d1.style.display = "none";
-            d2.style.display = "block";
-        }
-            else {
-                d1.style.display = "flex";
-                d2.style.display = "none";
-            }
-        };
-    </script>
 </body>
 
 </html>

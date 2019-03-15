@@ -15,3 +15,18 @@ body {
 .container-fluid, .row{
     background-color: #f5f5f5;
 }
+
+.report-container{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+
+.report-container iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
