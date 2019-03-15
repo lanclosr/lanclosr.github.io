@@ -14,7 +14,6 @@
       height: 100%;
       width: 100%;
     }
-    
   </style>
     <link rel="stylesheet" href="css/style.css">
     <!-- Bootstrap CSS -->
@@ -27,7 +26,6 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/dijit/themes/claro/claro.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
-
   <script>
     require([
       "esri/Map",
@@ -40,14 +38,13 @@
     ], function(
       Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
     ) {
-        
-      var survey = "<a target='_blank' href='https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895'>Submit a Trail Report</a>";
-        
+                
       var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "bd4882ebe7304cf3b072944b4b4641c9"    
         }
       });
+
       var view = new MapView({
         map: webmap,
         popup: {
@@ -61,6 +58,7 @@
         },
         container: "viewDiv"
       });
+
       var popup = view.popup;
     
       //create and config the locate widget
@@ -68,6 +66,7 @@
           view: view,
           scale: 10000
       });
+
       // Add locate widget to the view
       view.ui.add(locateWidget, {
           position: "top-left",
@@ -116,24 +115,42 @@
       });
       
       view.when(function() {
+
         var centerPoint = view.center.clone();
+
         popup.open({
           title: "Welcome to Huntsville State Park",
           location: centerPoint,
-            content: ("Explore your park and search for facilites. If you see an issue on the trail, " + survey)
+            content: ("Explore your park and search our facilites to the left. If you see an issue in the park, submit a report above.")
         });
       });
     });
-  </script>
+    </script>
 </head>
 
 <body>
     <nav class="navbar fixed-top navbar-light bg-dark">
         <a class="navbar-brand">
             <img src="img/hike.svg" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Huntsville SP</a>
-            <a class="btn btn-outline-warning btn-sm" href="https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895" target="_blank">Submit a Report</a>
-        </nav>
+            <a class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#modalReport">Submit a Report</a>
+      </nav>
     <div id="viewDiv"></div>
+    <!--Modal: load the report form-->
+    <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body mb-0 p-0">
+            <div id="report-container" class="z-depth-1-half report-container" style="height: 500px">
+              <iframe src="https://arcg.is/00CvW0" frameborder="0"
+                style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-warning btn-sm" data-dismiss="modal">Return to map</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
