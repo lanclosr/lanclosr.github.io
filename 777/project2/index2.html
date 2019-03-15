@@ -38,9 +38,7 @@
     ], function(
       Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
     ) {
-        
-      var survey = "<a target='_blank' href='https://survey123.arcgis.com/share/b7fc1255ab624d23b9ce489766cf2895'>Submit a Trail Report</a>";
-        
+                
       var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "bd4882ebe7304cf3b072944b4b4641c9"    
@@ -123,7 +121,7 @@
         popup.open({
           title: "Welcome to Huntsville State Park",
           location: centerPoint,
-            content: ("Explore your park and search for facilites. If you see an issue on the trail, " + survey)
+            content: ("Explore your park and search our facilites to the left. If you see an issue in the park, submit a report above.")
         });
       });
     });
