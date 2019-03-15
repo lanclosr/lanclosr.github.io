@@ -22,10 +22,10 @@ iframe {
     border: 0;
     min-height: 350px;
 }
-
-.modal-body {
+.modal {
+    position: absolute;
+    overflow-y: scroll;
     max-height: calc(100vh-200px);
-    overflow-y: auto;
 }
 
 .modal-footer {
