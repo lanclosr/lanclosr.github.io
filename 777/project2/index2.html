@@ -8,12 +8,6 @@
   <style>
     html,
     body,
-    #viewDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
   </style>
     <link rel="stylesheet" href="css/style.css">
     <!-- Bootstrap CSS -->
@@ -60,9 +54,6 @@
       });
       document.querySelector(".btns").addEventListener("click", function(
         event) {
-        /************************************************************
-         * On a button click, change the map of the View
-         ************************************************************/
         var id = event.target.getAttribute("data-id");
         if (id == 0) {
             document.getElementById("viewDiv").style.display= "",
@@ -135,7 +126,7 @@
         popup.open({
           title: "Welcome to Huntsville State Park",
           location: centerPoint,
-            content: ("Explore your park and search our facilites to the left. If you see an issue in the park, submit a report above.")
+            content: ("Explore your park and search our facilites. If you see an issue in the park, submit a report to let us know.")
         });
       });
     });
