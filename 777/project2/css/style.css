@@ -23,6 +23,7 @@ html{
 }
 
 .reportDiv {
-    padding-top: 70px;
+    padding-top: 0px;
     overflow: hidden;
+    z-index: 10;
 }
