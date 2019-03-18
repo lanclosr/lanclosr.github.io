@@ -5,13 +5,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: #cccccc;
     padding-top: 60px;
-    overflow: hidden;
     -webkit-overflow-scrolling: touch;
   	overflow: hidden;
 }
 
 html{
-    overflow: hidden;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
 
