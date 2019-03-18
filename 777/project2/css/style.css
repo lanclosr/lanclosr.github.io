@@ -23,3 +23,7 @@ html{
 .container-fluid, .row{
     background-color: #f5f5f5;
 }
+
+.reportDiv {
+    padding: 60px;
+}
