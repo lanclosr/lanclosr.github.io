@@ -24,4 +24,5 @@ html{
 
 .reportDiv {
     padding: 60px;
+    overflow: hidden;
 }
