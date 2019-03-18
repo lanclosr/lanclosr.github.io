@@ -6,8 +6,6 @@ body {
     color: #cccccc;
     padding-top: 60px;
     overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-  	overflow-y: scroll;
 }
 
 html{
