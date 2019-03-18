@@ -7,11 +7,11 @@ body {
     padding-top: 60px;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
-  	overflow-y: scroll;
+  	overflow: hidden;
 }
 
 html{
-    overflow: scroll;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
