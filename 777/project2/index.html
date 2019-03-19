@@ -36,9 +36,10 @@
       "esri/widgets/Locate",
       "esri/widgets/Search",
       "esri/widgets/Home",
-      "esri/layers/FeatureLayer"
+      "esri/layers/FeatureLayer",
+      "esri/widgets/ScaleBar"
     ], function(
-      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
+      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer, ScaleBar
     ) {
                 
      var webmap = new WebMap({
@@ -125,6 +126,17 @@
       view.ui.add(homeWidget,{
           position: "top-left",
           index: 2
+      });
+        
+      //create and config a home button widget
+      var scaleBar = new ScaleBar({
+          view: view,
+          style: "ruler"
+      });
+        
+      // Add the widget to the bottom left corner of the view
+      view.ui.add(scaleBar, {
+          position: "bottom-left"
       });
       
       view.when(function() {
