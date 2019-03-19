@@ -6,6 +6,7 @@ body {
     color: #cccccc;
     -webkit-overflow-scrolling: touch;
   	overflow: scroll;
+    padding-top: 70px;
 }
 
 html{
@@ -14,7 +15,6 @@ html{
 
 .navbar{
     color: white;
-    z-index: 5;
 }
 
 .container-fluid, .row{
@@ -22,7 +22,5 @@ html{
 }
 
 .reportDiv {
-    padding-top: 70px;
     overflow: hidden;
-    z-index: 10;
 }
