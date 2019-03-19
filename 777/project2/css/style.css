@@ -22,7 +22,7 @@ html{
     background-color: #f5f5f5;
 }
 
-reportDiv {
+.reportDiv {
     padding-top: 70px;
     overflow: hidden;
     z-index: 10;
