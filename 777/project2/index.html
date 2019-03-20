@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Huntsville SP</title>
+  <title>Ryan Lanclos Geog777 Project2</title>
 
   <style>
     html,
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
   <script>
+      //widgets for Esri JS API
     require([
       "esri/Map",
       "esri/views/MapView",
@@ -41,13 +42,13 @@
     ], function(
       Map, MapView, WebMap, Locate, Search, Home, FeatureLayer, ScaleBar
     ) {
-                
+     //set the webmap used in the application. Takes the ID from the portal item.            
      var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "bd4882ebe7304cf3b072944b4b4641c9"    
         }
       });
-
+      //set the view for the map and locate the popup window location on the map view.
       var view = new MapView({
         map: webmap,
         popup: {
@@ -57,10 +58,12 @@
             buttonEnabled: true,
             // Ignore the default sizes that trigger responsive docking
             breakpoint: false,
+            position: "bottom-right",
           }
         },
         container: "viewDiv"
       });
+      //set the top button selector to hide or show the divs for map and report.
       document.querySelector(".btns").addEventListener("click", function(
         event) {
         var id = event.target.getAttribute("data-id");
@@ -72,7 +75,7 @@
                 document.getElementById("reportDiv").style.display= "block"
             }
           });
-      
+      //add the popup
       var popup = view.popup;
     
       //create and config the locate widget
@@ -84,7 +87,7 @@
       // Add locate widget to the view
       view.ui.add(locateWidget, {
           position: "top-left",
-          index: 0
+          index: 3
       });
         
       //set search widget source
@@ -102,7 +105,7 @@
               maxResults: 6,
               maxSuggestions: 3,
       });
-      //set search widget
+      //configure the search widget
       var searchWidget = new Search({
           view: view,
           enablebuttonmode: true,
@@ -113,7 +116,7 @@
       
       // Add the search widget to the view
       view.ui.add(searchWidget, {
-          position: "top-left",
+          position: "top-right",
           index: 0
       });
         
@@ -128,21 +131,19 @@
           index: 2
       });
         
-      //create and config a home button widget
+      //create and config a scale bar
       var scaleBar = new ScaleBar({
           view: view,
           style: "ruler"
       });
         
-      // Add the widget to the bottom left corner of the view
+      // Add the scalbar to the bottom left corner of the view
       view.ui.add(scaleBar, {
           position: "bottom-left"
       });
-      
+      //set the popup when the map loads to give instructions
       view.when(function() {
-
         var centerPoint = view.center.clone();
-
         popup.open({
           title: "Welcome to Huntsville State Park",
           location: centerPoint,
@@ -154,6 +155,7 @@
 </head>
 
 <body>
+    <!--top nav bar with logo, text and buttons to hide/show the divs for map or report-->
     <nav class="navbar fixed-top navbar-light bg-dark">
         <a class="navbar-brand">
             <i class="fas fa-hiking"></i>&nbsp; Huntsville SP</a>
@@ -162,10 +164,12 @@
                 <a class="btn btn-outline-danger btn-sm" data-id="1">Report</a>
             </div>
       </nav>
+    <!--map div-->
     <div id="viewDiv"></div>
+    <!--report div-->
     <div id="reportDiv" style="display:none">
+        <!--embed the Survey123 form from ArcGIS to collect the report-->
         <style>.embed-container {position: relative; height: 0; padding-bottom:80%; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe name="survey123webform" width="500" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Submit a Report" src="//survey123.arcgis.com/share/3781398b825845e6a4beb8ea4043ca09?portalUrl=https://UW-Mad.maps.arcgis.com&hide=navbar,header,footer,theme,description"></iframe></div>
     </div>
 </body>
-
 </html>
