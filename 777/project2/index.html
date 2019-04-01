@@ -38,11 +38,9 @@
       "esri/widgets/Search",
       "esri/widgets/Home",
       "esri/layers/FeatureLayer",
-      "esri/widgets/ScaleBar",
-      "esri/widgets/Legend",
-      "esri/widgets/Expand"
+      "esri/widgets/ScaleBar"
     ], function(
-      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer, ScaleBar, Legend, Expand
+      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer, ScaleBar
     ) {
      //set the webmap used in the application. Takes the ID from the portal item.            
      var webmap = new WebMap({
@@ -143,22 +141,6 @@
       view.ui.add(scaleBar, {
           position: "bottom-left"
       });
-      //add legend
-      const legend = new Expand({
-          content: new Legend({
-            view: view,
-            style: "card",
-            layout: "auto"
-          }),
-          view: view,
-          expanded: false
-        });
-        //add to view
-        view.ui.add(legend, {
-            position: "top-left",
-            index: 3
-        });
-        
       //set the popup when the map loads to give instructions
       view.when(function() {
         var centerPoint = view.center.clone();
