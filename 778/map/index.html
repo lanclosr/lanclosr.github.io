@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Know Your Flood Risk by Ryan Lanclos</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+  </style>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Esri js4.9 -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/WebMap",
+      "esri/widgets/Locate",
+      "esri/widgets/Search",
+      "esri/widgets/Home"
+    ], function(
+      Map, MapView, WebMap, Locate, Search, Home
+    ) {
+
+      var webmap = new WebMap({
+        portalItem: { // autocasts as new PortalItem()
+          id: "4496566eed5d496aa226f68039d3cd35"    
+        }
+      });
+
+      var view = new MapView({
+        map: webmap,
+        popup: {
+          dockEnabled: true,
+          dockOptions: {
+            // Disables the dock button from the popup
+            buttonEnabled: false,
+            // Ignore the default sizes that trigger responsive docking
+            breakpoint: false,
+          }
+        },
+        container: "viewDiv"
+      });
+
+      var popup = view.popup;
+    
+      //create and config the locate widget
+      var locateWidget = new Locate({
+          view: view,
+          scale: 10000
+      });
+
+      // Add locate widget to the view
+      view.ui.add(locateWidget, {
+          position: "top-left",
+          index: 0
+      });
+        
+      //create and config search widget for geocode
+      var searchWidget = new Search({
+        view: view,
+        popupEnabled: false,
+        locationEnabled: false,
+        scale: 10000
+      });
+      // Add the search widget to the view
+      view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 0
+      });
+        
+      //create and config a home button widget
+      var homeWidget = new Home({
+          view: view
+      });
+      
+      //add the home button to the view
+      view.ui.add(homeWidget,{
+          position: "top-left",
+          index: 2
+      });
+
+
+      view.when(function() {
+
+        var centerPoint = view.center.clone();
+
+        popup.open({
+          title: "Know Your Risk on the AT",
+          location: centerPoint,
+          content: "This map allows you to explore the level of risk along certain areas of the trail. Risk is calculated according to personal crime rates, total population, road density, and % of land developed. Together they create a risk index - 5 is the highest level of risk. Be aware and be prepared while you plan your visit to the AT."
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-light bg-dark">
+        <a class="navbar-brand">
+            <img src="img/mountain.svg" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Know Your Risk on the AT</a>
+    </nav>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
