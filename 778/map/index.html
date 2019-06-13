@@ -73,19 +73,36 @@
           position: "top-left",
           index: 0
       });
-        
-      //create and config search widget for geocode
-      var searchWidget = new Search({
-        view: view,
-        popupEnabled: false,
-        locationEnabled: false,
-        scale: 10000
+      
+      //set search widget source
+      var source = [];
+      source.push({
+          featureLayer: {
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/at_shelters_personalCrimeEnrich/FeatureServer",
+          },
+              searchFields: ["NAME"],
+              displayField: "NAME",
+              exactMatch: false,
+              outFields: ["NAME"],
+              name: "AT Shelters",
+              placeholder: "Search shelter name",
+              maxResults: 6,
+              maxSuggestions: 3,
       });
+      //configure the search widget
+      var searchWidget = new Search({
+          view: view,
+          enablebuttonmode: false,
+          popupEnabled: false,
+          includeDefaultSources: true,
+          sources: source,
+      });
+      
       // Add the search widget to the view
       view.ui.add(searchWidget, {
           position: "top-left",
           index: 0
-      });
+      });    
         
       //create and config a home button widget
       var homeWidget = new Home({
