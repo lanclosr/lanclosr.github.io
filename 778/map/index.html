@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Know Your Flood Risk by Ryan Lanclos</title>
+  <title>Know Your AT Risk</title>
 
   <style>
     html,
@@ -23,9 +23,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Esri js4.9 -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.9/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.9/"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.12/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.12/"></script>
     <link rel="stylesheet" href="css/style.css">
 
 
@@ -36,9 +36,10 @@
       "esri/WebMap",
       "esri/widgets/Locate",
       "esri/widgets/Search",
-      "esri/widgets/Home"
+      "esri/widgets/Home",
+      "esri/layers/FeatureLayer"
     ], function(
-      Map, MapView, WebMap, Locate, Search, Home
+      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
     ) {
 
       var webmap = new WebMap({
@@ -74,30 +75,33 @@
           position: "top-left",
           index: 0
       });
-      
-      //set search widget source
-      var source = [];
-      source.push({
-          featureLayer: {
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/at_shelters_personalCrimeEnrich/FeatureServer",
-          },
+      //set the search featureLayer
+      var featureLayerShelters = new FeatureLayer({
+          url:
+            "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/at_shelters_personalCrimeEnrich/FeatureServer",
+          popupTemplate: {
+            // autocasts as new PopupTemplate()
+            title: "<b>AT Shelter:</b> {NAME} </br><br>Click on shelter for more information.",
+            overwriteActions: true
+          }
+        });
+      // Setting sources property of the search widget to use featureLayer
+        var searchWidget = new Search({
+          view: view,
+          allPlaceholder: "Shelter or Location",
+          maxSuggestions: 3,
+          sources: [
+            {
+              layer: featureLayerShelters,
               searchFields: ["NAME"],
               displayField: "NAME",
               exactMatch: false,
               outFields: ["NAME"],
-              name: "AT Shelters",
-              placeholder: "Search shelter name",
-              maxResults: 6,
-              maxSuggestions: 3,
-      });
-      //configure the search widget
-      var searchWidget = new Search({
-          view: view,
-          enablebuttonmode: false,
-          popupEnabled: false,
-          includeDefaultSources: true,
-          sources: source,
-      });
+              name: "AT Shelter",
+              placeholder: "Hog Back Ridge"
+            },
+          ]
+        });
       
       // Add the search widget to the view
       view.ui.add(searchWidget, {
@@ -133,7 +137,7 @@
 
 <body>
     <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand smooth-scroll" href="#home">
+            <a class="navbar-brand smooth-scroll" href="../index.html">
                 <img src="images/mountain.svg" width="40" height="40" class="d-inline-block align-top">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
