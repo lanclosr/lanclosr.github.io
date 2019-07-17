@@ -37,9 +37,12 @@
       "esri/widgets/Locate",
       "esri/widgets/Search",
       "esri/widgets/Home",
+      "esri/widgets/Legend",
+      "esri/widgets/Expand",
+      "esri/widgets/LayerList",
       "esri/layers/FeatureLayer"
     ], function(
-      Map, MapView, WebMap, Locate, Search, Home, FeatureLayer
+      Map, MapView, WebMap, Locate, Search, Home, Legend, Expand, LayerList, FeatureLayer
     ) {
 
       var webmap = new WebMap({
@@ -56,25 +59,14 @@
             // Disables the dock button from the popup
             buttonEnabled: false,
             // Ignore the default sizes that trigger responsive docking
-            breakpoint: false,
+            breakpoint: true,
           }
         },
         container: "viewDiv"
       });
 
       var popup = view.popup;
-    
-      //create and config the locate widget
-      var locateWidget = new Locate({
-          view: view,
-          scale: 10000
-      });
-
-      // Add locate widget to the view
-      view.ui.add(locateWidget, {
-          position: "top-left",
-          index: 0
-      });
+        
       //set the search featureLayer
       var featureLayerShelters = new FeatureLayer({
           url:
@@ -119,6 +111,32 @@
           position: "top-left",
           index: 2
       });
+
+      //LayerList
+      const layerList = new LayerList({
+          view: view,
+          listItemCreatedFunction: function(event) {
+              const item = event.item;
+              if (item.layer.type != "group") {
+                  // don't show legend twice
+                  item.panel = {
+                      content: "legend",
+                      open: false
+                  };
+              }
+          }
+      });
+      //add expander for the legend and layerlist
+      var bgExpand = new Expand({
+          view: view,
+          content: layerList
+      });
+ 
+      // Add widget to the top right corner of the view
+        view.ui.add(bgExpand, {
+            position: "top-left"
+        });
+
       view.when(function() {
 
         var centerPoint = view.center.clone();
