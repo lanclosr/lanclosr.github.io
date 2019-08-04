@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Know Your AT Risk</title>
+  <title>Know Your Risk on the AT</title>
 
   <style>
     html,
@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Esri js4.9 -->
+    <!-- Esri js4.12 -->
     <link rel="stylesheet" href="https://js.arcgis.com/4.12/dijit/themes/claro/claro.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css">
     <script src="https://js.arcgis.com/4.12/"></script>
@@ -30,6 +30,7 @@
 
 
   <script>
+      //set the widgets for the framework using Esri JS API 4.12
     require([
       "esri/Map",
       "esri/views/MapView",
@@ -44,13 +45,13 @@
     ], function(
       Map, MapView, WebMap, Locate, Search, Home, Legend, Expand, LayerList, FeatureLayer
     ) {
-
+        //read the web map from ArcGIS Online
       var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "4496566eed5d496aa226f68039d3cd35"    
         }
       });
-
+        //set the view and add the webmap and popup window
       var view = new MapView({
         map: webmap,
         popup: {
@@ -64,7 +65,7 @@
         },
         container: "viewDiv"
       });
-
+        //add popup to the view
       var popup = view.popup;
         
       //set the search featureLayer
@@ -140,11 +141,11 @@
       view.when(function() {
 
         var centerPoint = view.center.clone();
-
+          //defult language in the popup window when the app loads
         popup.open({
           title: "Know Your Risk on the AT",
           location: centerPoint,
-          content: "This map allows you to explore the level of risk along certain areas of the trail. Risk is calculated according to personal crime rates, total population, road density, and % of land developed. Together they create a risk index - 5 is the highest level of risk. Be aware and be prepared while you plan your visit to the AT."
+          content: "This map allows you to explore the level of risk along certain areas of the trail. Risk is calculated according to personal crime rates, total population, road density, and % of land developed. Together they create a risk index of 1 to 5. 5 is the highest level of risk. Be aware and be prepared while you plan your visit to the AT."
         });
       });
     });
@@ -167,11 +168,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../index.html#second">Report</a>
                     </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link smooth-scroll-middle" href="../index.html#third">About</a>
-                    </li>-->
                     <li class="nav-item">
-                        <a class="nav-link smooth-scroll" href="../index.html#fourth">Resources</a>
+                        <a class="nav-link smooth-scroll" href="../index.html#third">Resources</a>
                     </li>
                 </ul>
             </div>
